@@ -10,6 +10,9 @@
     <script
         src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -19,7 +22,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: var(--bg);
             margin: 0;
             padding: 20px;
@@ -173,17 +176,41 @@
             margin-top: 5px;
             font-style: italic;
         }
+
+        .no-export {
+            display: none !important;
+        }
+
+        .btn-export {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-export:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="header">
+        <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
             <h1 style="margin:0;">Ranking de aprobación del gobernador</h1>
+            <button class="btn-export" onclick="exportToPDF()">📑 Exportar PDF</button>
         </div>
 
-        <div class="filters">
+        <div class="filters export-exclude">
             <div class="f-group" style="display: none;"><label>📍 Estado / Gobernador</label><select id="selE"></select>
             </div>
             <div class="f-group"><label>🔍 Casa Encuestadora</label><select id="selC"></select></div>
@@ -215,12 +242,13 @@
             </div>
 
             <div class="card">
-                <h3>🏆 Posición de Hidalgo en el ranking nacional <span id="badgeR" class="avg-badge">Promedio: --</span></h3>
+                <h3>🏆 Posición de Hidalgo en el ranking nacional <span id="badgeR" class="avg-badge">Promedio:
+                        --</span></h3>
                 <div id="ranking-container"><canvas id="chR"></canvas></div>
             </div>
 
             <div class="card">
-                <h3>⚖️ Por Casa Encuestadora <span id="badgeC" class="avg-badge">Promedio: --</span></h3>
+                <h3>📊 Por Casa Encuestadora <span id="badgeC" class="avg-badge">Promedio: --</span></h3>
                 <div class="chart-container"><canvas id="chC"></canvas></div>
             </div>
         </div>
@@ -426,7 +454,7 @@
                     datasets: datasets.map(ds => ({
                         label: ds.label || '',
                         data: ds.data,
-                        backgroundColor: id === 'chR' ? labels.map((lbl, idx) => lbl.includes('Hidalgo') ? '#f1c40f' : (ds.data[idx] > 50 ? '#27ae60' : '#e74c3c')) : ds.color,
+                        backgroundColor: id === 'chR' ? ds.data.map(val => (val > 50 ? '#27ae60' : '#e74c3c')) : ds.color,
                         borderColor: ds.color,
                         borderWidth: ds.border || 2,
                         borderDash: ds.dashed || [],
@@ -454,11 +482,65 @@
                         }
                     },
                     scales: {
-                        y: { beginAtZero: true, max: axis === 'x' ? 100 : undefined },
-                        x: { max: axis === 'y' ? 100 : undefined }
+                        y: {
+                            beginAtZero: true,
+                            max: axis === 'x' ? 100 : undefined,
+                            ticks: {
+                                font: function (context) {
+                                    if (id === 'chR' && context.tick && labels[context.index] && labels[context.index].includes('Hidalgo')) {
+                                        return { weight: 'bold', family: 'Montserrat' };
+                                    }
+                                    return { family: 'Montserrat' };
+                                }
+                            }
+                        },
+                        x: {
+                            max: axis === 'y' ? 100 : undefined,
+                            ticks: {
+                                font: { family: 'Montserrat' }
+                            }
+                        }
                     }
                 }
             });
+        }
+        async function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const container = document.querySelector('.container');
+            const exclude = document.querySelectorAll('.export-exclude');
+
+            // Ocultar filtros
+            exclude.forEach(el => el.classList.add('no-export'));
+
+            // Capturar pantalla
+            const canvas = await html2canvas(container, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#f4f7f6'
+            });
+
+            // Mostrar filtros de nuevo
+            exclude.forEach(el => el.classList.remove('no-export'));
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'letter');
+
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+
+            const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+            const finalWidth = imgWidth * ratio;
+            const finalHeight = imgHeight * ratio;
+
+            const x = (pdfWidth - finalWidth) / 2;
+            const y = 5; // Margen superior
+
+            pdf.addImage(imgData, 'PNG', x, y, finalWidth, finalHeight);
+            pdf.save('Tablero_Aprobacion_Hidalgo.pdf');
         }
     </script>
 
