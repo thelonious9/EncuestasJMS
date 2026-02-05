@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking de Gobernadores - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .controls { display: flex; gap: 20px; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        .control-group { display: flex; flex-direction: column; }
+        label { font-weight: bold; margin-bottom: 5px; color: #444; }
+        select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; min-width: 150px; }
+        .chart-wrapper { height: 700px; } /* Altura mayor para ver a todos los gobernadores */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📊 Ranking de Aprobación de Gobernadores</h2>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label for="filtroFecha">Mes / Fecha:</label>
+            <select id="filtroFecha"></select>
+        </div>
+        <div class="control-group">
+            <label for="filtroEncuesta">Encuestadora:</label>
+            <select id="filtroEncuesta"></select>
+        </div>
+    </div>
+
+    <div class="chart-wrapper">
+        <canvas id="graficoRanking"></canvas>
+    </div>
+</div>
+
+<script>
+    let datosCompletos = [];
+    let miGrafico;
+
+    // 1. Cargar el CSV
+    Papa.parse('datos.csv', {
+        download: true,
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+            datosCompletos = results.data;
+            inicializarFiltros();
+            actualizarGrafico();
+        }
+    });
+
+    function inicializarFiltros() {
+        const fechas = [...new Set(datosCompletos.map(d => d.Mes))].sort().reverse();
+        const encuestas = [...new Set(datosCompletos.map(d => d.Encuesta))].sort();
+
+        const selectFecha = document.getElementById('filtroFecha');
+        const selectEncuesta = document.getElementById('filtroEncuesta');
+
+        fechas.forEach(f => selectFecha.add(new Option(f, f)));
+        encuestas.forEach(e => selectEncuesta.add(new Option(e, e)));
+
+        // Escuchar cambios
+        selectFecha.addEventListener('change', actualizarGrafico);
+        selectEncuesta.addEventListener('change', actualizarGrafico);
+    }
+
+    function actualizarGrafico() {
+        const fechaSel = document.getElementById('filtroFecha').value;
+        const encuestaSel = document.getElementById('filtroEncuesta').value;
+
+        // 2. Filtrar y Ordenar (Ranking)
+        let datosFiltrados = datosCompletos.filter(d => d.Mes === fechaSel && d.Encuesta === encuestaSel);
+        
+        // Ordenar de mayor a menor aprobación
+        datosFiltrados.sort((a, b) => b.Aprobación - a.Aprobación);
+
+        const etiquetas = datosFiltrados.map(d => d.Gobernador + " (" + d.Estado + ")");
+        const valores = datosFiltrados.map(d => (d.Aprobación * 100).toFixed(1)); // Convertir 0.52 a 52.0
+
+        // 3. Crear o destruir gráfico previo
+        if (miGrafico) miGrafico.destroy();
+
+        const ctx = document.getElementById('graficoRanking').getContext('2d');
+        miGrafico = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: etiquetas,
+                datasets: [{
+                    label: '% de Aprobación',
+                    data: valores,
+                    backgroundColor: valores.map(v => v > 50 ? '#2e7d32' : '#c62828'), // Color dinámico (Verde > 50, Rojo < 50)
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Horizontal
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { max: 100, beginAtZero: true }
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
