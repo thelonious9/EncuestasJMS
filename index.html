@@ -3,86 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablero de Aprobación - Optimizado</title>
+    <title>Tablero Electoral - Ranking Completo</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; --red: #e74c3c; --green: #27ae60; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 15px; color: var(--primary); }
-        .container { max-width: 1200px; margin: auto; }
+        .container { max-width: 1300px; margin: auto; }
         
-        /* Filtros más compactos y modernos */
         .filters-bar { 
             display: flex; flex-wrap: wrap; gap: 15px; 
             background: white; padding: 15px; border-radius: 10px; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px;
         }
         .filter-item { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
-        label { font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #7f8c8d; }
-        select { padding: 8px; border-radius: 5px; border: 1px solid #dcdde1; font-size: 14px; }
+        label { font-size: 0.75rem; font-weight: bold; margin-bottom: 5px; color: #7f8c8d; text-transform: uppercase; }
+        select { padding: 10px; border-radius: 5px; border: 1px solid #dcdde1; font-size: 14px; cursor: pointer; }
 
-        /* Estructura de Gráficos con Altura Controlada */
-        .dashboard-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; 
-        }
-        .chart-card { 
-            background: white; padding: 15px; border-radius: 10px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex; flex-direction: column;
-        }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; }
+        .chart-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .full-width { grid-column: 1 / -1; }
         
-        /* IMPORTANTE: Altura máxima para evitar que el gráfico crezca demasiado */
-        .canvas-container { 
-            position: relative; height: 350px; width: 100%; 
-            overflow-y: auto; /* Permite scroll si hay muchos datos */
-        }
-        h3 { margin: 0 0 15px 0; font-size: 1rem; border-left: 4px solid var(--accent); padding-left: 10px; }
+        /* Contenedor con scroll para el Ranking si es necesario */
+        .canvas-container { position: relative; width: 100%; min-height: 350px; }
+        .ranking-container { height: 700px; overflow-y: auto; border: 1px solid #eee; border-radius: 5px; padding: 10px; }
         
-        /* Animación de carga */
-        #loading { position: fixed; top: 0; left: 0; width: 100%; padding: 10px; background: var(--accent); color: white; text-align: center; display: none; z-index: 1000; }
+        h3 { margin: 0 0 15px 0; font-size: 1.1rem; color: var(--primary); border-left: 5px solid var(--accent); padding-left: 12px; }
+        #loading { position: fixed; top: 0; left: 0; width: 100%; padding: 10px; background: var(--accent); color: white; text-align: center; display: none; z-index: 1000; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="loading">Actualizando datos...</div>
+<div id="loading">Procesando datos...</div>
 
 <div class="container">
-    <header style="text-align: center; padding-bottom: 10px;">
-        <h2 style="margin:0;">📊 Encuestas de aprobación</h2>
+    <header style="text-align: center; padding: 10px 0 20px 0;">
+        <h1 style="margin:0; font-size: 1.8rem;">📈 Monitor de Aprobación de Gobernadores</h1>
     </header>
 
     <div class="filters-bar">
         <div class="filter-item">
-            <label>📍 ESTADO</label>
+            <label>📍 Estado</label>
             <select id="selEstado"></select>
         </div>
         <div class="filter-item">
-            <label>🔍 ENCUESTADORA</label>
+            <label>🔍 Encuestadora</label>
             <select id="selEncuesta"></select>
         </div>
         <div class="filter-item">
-            <label>📅 FECHA DE CORTE</label>
+            <label>📅 Fecha</label>
             <select id="selFecha"></select>
         </div>
     </div>
 
     <div class="dashboard-grid">
         <div class="chart-card full-width">
-            <h3>📈 Seguimiento Histórico (Evolución)</h3>
+            <h3>Seguimiento Histórico (Línea de tiempo)</h3>
             <div class="canvas-container">
                 <canvas id="chartHistorico"></canvas>
             </div>
         </div>
 
         <div class="chart-card">
-            <h3>🏆 Ranking Nacional (Aprobación %)</h3>
-            <div class="canvas-container" style="height: 500px;"> <canvas id="chartRanking"></canvas>
+            <h3>Ranking Nacional (Orden de Aprobación)</h3>
+            <div class="ranking-container">
+                <canvas id="chartRanking"></canvas>
             </div>
         </div>
 
         <div class="chart-card">
-            <h3>⚖️ Comparativa de Casas Encuestadoras</h3>
+            <h3>Comparativa por Casa Encuestadora</h3>
             <div class="canvas-container">
                 <canvas id="chartEncuestas"></canvas>
             </div>
@@ -94,11 +86,10 @@
     let rawData = [];
     let charts = {};
 
-    // Cargar CSV
+    // Cargar y Procesar
     Papa.parse('datos.csv', {
         download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
         complete: function(results) {
-            // Limpieza básica para evitar errores
             rawData = results.data.filter(d => d.Estado && d.Aprobación != null);
             initApp();
         }
@@ -113,7 +104,6 @@
         populate('selEncuesta', encuestas, true);
         populate('selFecha', fechas, true);
 
-        // Actualizar al cambiar filtros (con ligero retraso para suavidad)
         document.querySelectorAll('select').forEach(s => {
             s.onchange = () => {
                 document.getElementById('loading').style.display = 'block';
@@ -129,20 +119,10 @@
         items.forEach(i => sel.add(new Option(i, i)));
     }
 
-    // Lógica de Agrupación Optimizada
-    function processData(data, field) {
-        const map = new Map();
-        data.forEach(d => {
-            const key = d[field];
-            if(!map.has(key)) map.set(key, { sum: 0, count: 0 });
-            const item = map.get(key);
-            item.sum += d.Aprobación;
-            item.count++;
-        });
-        return Array.from(map.keys()).map(k => ({
-            label: k,
-            val: ((map.get(k).sum / map.get(k).count) * 100).toFixed(1)
-        }));
+    function getAverage(data) {
+        if (data.length === 0) return 0;
+        const sum = data.reduce((a, b) => a + parseFloat(b.val), 0);
+        return (sum / data.length).toFixed(1);
     }
 
     function updateAll() {
@@ -153,45 +133,88 @@
         // 1. Histórico
         let dH = rawData.filter(d => d.Estado === est);
         if(enc !== "Todas") dH = dH.filter(d => d.Encuesta === enc);
-        render('chartHistorico', 'line', processData(dH.sort((a,b)=>new Date(a.Mes)-new Date(b.Mes)), 'Mes'), '#3498db');
+        const dataH = process(dH.sort((a,b)=>new Date(a.Mes)-new Date(b.Mes)), 'Mes');
+        render('chartHistorico', 'line', dataH, '#3498db');
 
         // 2. Ranking
         let dR = rawData;
         if(fec !== "Todas") dR = dR.filter(d => d.Mes === fec);
         if(enc !== "Todas") dR = dR.filter(d => d.Encuesta === enc);
-        let ranking = processData(dR, 'Estado').sort((a,b) => b.val - a.val);
-        render('chartRanking', 'bar', ranking, '#2ecc71', 'y');
+        const ranking = process(dR, 'Estado').sort((a,b) => b.val - a.val);
+        // Agregar posición al nombre
+        const rankedLabels = ranking.map((item, index) => `${index + 1}. ${item.label}`);
+        render('chartRanking', 'bar', { labels: rankedLabels, values: ranking.map(i => i.val) }, '#2ecc71', 'y');
 
         // 3. Encuestas
         let dE = rawData.filter(d => d.Estado === est);
         if(fec !== "Todas") dE = dE.filter(d => d.Mes === fec);
-        let comparativa = processData(dE, 'Encuesta').sort((a,b) => b.val - a.val);
-        render('chartEncuestas', 'bar', comparativa, '#9b59b6');
+        const comp = process(dE, 'Encuesta').sort((a,b) => b.val - a.val);
+        render('chartEncuestas', 'bar', comp, '#9b59b6');
 
         document.getElementById('loading').style.display = 'none';
     }
 
+    function process(data, field) {
+        const map = new Map();
+        data.forEach(d => {
+            const key = d[field];
+            if(!map.has(key)) map.set(key, { sum: 0, count: 0 });
+            map.get(key).sum += d.Aprobación;
+            map.get(key).count++;
+        });
+        return Array.from(map.keys()).map(k => ({ label: k, val: ((map.get(k).sum / map.get(k).count) * 100).toFixed(1) }));
+    }
+
     function render(id, type, data, color, axis = 'x') {
+        const labels = data.labels || data.map(i => i.label);
+        const values = data.values || data.map(i => i.val);
+        const avg = getAverage(values.map(v => ({val: v})));
+
         if(charts[id]) charts[id].destroy();
-        
-        const ctx = document.getElementById(id).getContext('2d');
-        charts[id] = new Chart(ctx, {
+
+        // Ajuste de altura para el ranking
+        const canvas = document.getElementById(id);
+        if(id === 'chartRanking') {
+            canvas.parentElement.style.height = (labels.length * 30) + "px";
+        }
+
+        charts[id] = new Chart(canvas.getContext('2d'), {
             type: type,
             data: {
-                labels: data.map(i => i.label),
+                labels: labels,
                 datasets: [{
-                    data: data.map(i => i.val),
-                    backgroundColor: id === 'chartRanking' ? data.map(v => v.val > 50 ? '#27ae60' : '#e74c3c') : color,
-                    borderColor: color,
-                    borderWidth: 1,
-                    fill: type === 'line'
+                    data: values,
+                    backgroundColor: id === 'chartRanking' ? values.map(v => v > 50 ? '#27ae60' : '#e74c3c') : color,
+                    borderColor: color, fill: type === 'line', tension: 0.3
                 }]
             },
             options: {
                 indexAxis: axis,
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                [axis === 'y' ? 'xMin' : 'yMin']: avg,
+                                [axis === 'y' ? 'xMax' : 'yMax']: avg,
+                                borderColor: 'black',
+                                borderWidth: 2,
+                                borderDash: [6, 6],
+                                label: {
+                                    display: true,
+                                    content: 'Promedio: ' + avg + '%',
+                                    position: 'end',
+                                    backgroundColor: 'rgba(0,0,0,0.7)',
+                                    color: '#fff',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                },
                 scales: { 
                     y: { beginAtZero: true, max: axis === 'x' ? 100 : undefined },
                     x: { max: axis === 'y' ? 100 : undefined }
