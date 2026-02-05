@@ -3,179 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Aprobación - Debug Mode</title>
+    <title>Tablero de Aprobación - Dashboard Final</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <style>
-        :root { --p: #2c3e50; --a: #3498db; --bg: #f5f6fa; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
-        .container { max-width: 1400px; margin: auto; }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: var(--primary); }
+        .container { max-width: 1300px; margin: auto; }
         
-        /* Layout */
-        .header { text-align: center; margin-bottom: 20px; }
+        .header { text-align: center; margin-bottom: 25px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        /* Filtros */
         .filters { 
-            display: flex; flex-wrap: wrap; gap: 15px; background: white; 
-            padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; background: white; padding: 25px; border-radius: 12px; 
+            margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: sticky; top: 10px; z-index: 1000;
         }
-        .f-item { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
-        select { padding: 10px; border-radius: 6px; border: 1px solid #ddd; margin-top: 5px; }
+        .f-group { display: flex; flex-direction: column; }
+        label { font-size: 0.75rem; font-weight: bold; color: #7f8c8d; text-transform: uppercase; margin-bottom: 8px; }
+        select { padding: 12px; border-radius: 8px; border: 1px solid #dcdde1; font-size: 14px; background-color: #f9f9f9; cursor: pointer; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        /* Gráficos */
+        .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .full { grid-column: 1 / -1; }
-        .canvas-h { position: relative; height: 350px; width: 100%; }
-        .scroll-v { height: 600px; overflow-y: auto; }
+        
+        h3 { margin: 0 0 20px 0; font-size: 1.1rem; border-left: 5px solid var(--accent); padding-left: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .avg-badge { font-size: 0.8rem; font-weight: normal; color: #7f8c8d; background: #eee; padding: 3px 10px; border-radius: 20px; }
 
-        /* Depurador Visual */
-        #debug-box { 
-            position: fixed; bottom: 10px; right: 10px; width: 300px; 
-            background: #2d3436; color: #00ff00; font-family: monospace; 
-            padding: 10px; font-size: 11px; border-radius: 5px; z-index: 10000;
-            max-height: 150px; overflow-y: auto; opacity: 0.9;
-        }
+        /* Contenedores */
+        .chart-container { position: relative; width: 100%; height: 400px; }
+        /* El ranking no tiene altura fija para que crezca según los estados */
+        #ranking-container { position: relative; width: 100%; }
     </style>
 </head>
 <body>
 
-<div id="debug-box">Iniciando sistema...<br></div>
-
 <div class="container">
     <div class="header">
-        <h1>Monitor de Aprobación</h1>
+        <h1 style="margin:0;">Monitor de Aprobación de Gobernadores</h1>
     </div>
 
     <div class="filters">
-        <div class="f-item"><label>📍 Estado</label><select id="selE"></select></div>
-        <div class="f-item"><label>🔍 Encuestadora</label><select id="selC"></select></div>
-        <div class="f-item"><label>📅 Fecha</label><select id="selF"></select></div>
+        <div class="f-group"><label>📍 Estado / Gobernador</label><select id="selE"></select></div>
+        <div class="f-group"><label>🔍 Casa Encuestadora</label><select id="selC"></select></div>
+        <div class="f-group"><label>📅 Fecha de Corte</label><select id="selF"></select></div>
     </div>
 
-    <div class="grid">
+    <div class="dashboard">
         <div class="card full">
-            <h3>📈 Histórico de Aprobación</h3>
-            <div class="canvas-h"><canvas id="chH"></canvas></div>
+            <h3>📈 Seguimiento Histórico <span id="badgeH" class="avg-badge">Promedio: --</span></h3>
+            <div class="chart-container"><canvas id="chH"></canvas></div>
         </div>
+
         <div class="card">
-            <h3>🏆 Ranking (Posición)</h3>
-            <div class="scroll-v"><canvas id="chR"></canvas></div>
+            <h3>🏆 Ranking Nacional (Posiciones) <span id="badgeR" class="avg-badge">Promedio: --</span></h3>
+            <div id="ranking-container"><canvas id="chR"></canvas></div>
         </div>
+
         <div class="card">
-            <h3>⚖️ Comparativa</h3>
-            <div class="canvas-h"><canvas id="chC"></canvas></div>
+            <h3>⚖️ Por Casa Encuestadora <span id="badgeC" class="avg-badge">Promedio: --</span></h3>
+            <div class="chart-container"><canvas id="chC"></canvas></div>
         </div>
     </div>
 </div>
 
 <script>
-    // 1. REGISTRO FORZOSO DE PLUGINS
-    if (typeof Chart !== 'undefined' && window['chartjs-plugin-annotation']) {
-        Chart.register(window['chartjs-plugin-annotation']);
-        log("✅ Chart.js y Anotaciones listos.");
-    } else {
-        log("❌ Error: Librerías no cargadas.");
-    }
+    // Registrar el plugin de promedios para Chart.js 4
+    Chart.register(window['chartjs-plugin-annotation']);
 
-    let raw = [];
+    let rawData = [];
     let charts = {};
-    
-    // IMPORTANTE: Cambia esto si tu archivo en GitHub no se llama datos.csv
-    const FILE = 'datos.csv'; 
+    const FILE_NAME = 'datos.csv';
 
-    function log(m) { 
-        const d = document.getElementById('debug-box');
-        d.innerHTML += "> " + m + "<br>";
-        d.scrollTop = d.scrollHeight;
-        console.log(m);
-    }
-
-    // 2. CARGA DE DATOS
-    log("Intentando cargar: " + FILE);
-    Papa.parse(FILE, {
+    // 1. CARGA DE DATOS
+    Papa.parse(FILE_NAME, {
         download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
-        complete: function(res) {
-            log("Filas detectadas: " + res.data.length);
-            raw = res.data.filter(d => d.Estado && d.Aprobación != null);
-            log("Filas válidas: " + raw.length);
-            if(raw.length === 0) log("⚠️ ¡Cuidado! No hay datos válidos.");
-            start();
-        },
-        error: (err) => log("❌ Error PapaParse: " + err)
+        complete: function(results) {
+            const keys = Object.keys(results.data[0]);
+            // Buscar la columna de aprobación sin importar acentos o mayúsculas
+            const apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
+            
+            rawData = results.data.filter(d => d.Estado && d[apKey] != null).map(d => ({
+                ...d,
+                Val: parseFloat(d[apKey])
+            }));
+            
+            initDashboard();
+        }
     });
 
-    function start() {
-        try {
-            const ests = [...new Set(raw.map(d => d.Estado))].sort();
-            const encs = [...new Set(raw.map(d => d.Encuesta))].sort();
-            const fcs = [...new Set(raw.map(d => d.Mes))].sort().reverse();
+    function initDashboard() {
+        const estados = [...new Set(rawData.map(d => d.Estado))].sort();
+        const encuestas = [...new Set(rawData.map(d => d.Encuesta))].sort();
+        const fechas = [...new Set(rawData.map(d => d.Mes))].sort().reverse();
 
-            fill('selE', ests, false);
-            fill('selC', encs, true);
-            fill('selF', fcs, true);
+        populate('selE', estados, false);
+        populate('selC', encuestas, true);
+        populate('selF', fechas, true);
 
-            document.querySelectorAll('select').forEach(s => s.onchange = update);
-            update();
-            log("🚀 Tablero renderizado.");
-        } catch(e) { log("❌ Error en start(): " + e); }
+        document.querySelectorAll('select').forEach(s => s.onchange = updateCharts);
+        updateCharts();
     }
 
-    function fill(id, arr, all) {
+    function populate(id, items, all) {
         const s = document.getElementById(id);
-        if(all) s.add(new Option("-- Todas --", "Todas"));
-        arr.forEach(i => s.add(new Option(i, i)));
+        if(all) s.add(new Option("--- TODAS ---", "Todas"));
+        items.forEach(i => s.add(new Option(i, i)));
     }
 
-    function process(data, key) {
-        const m = new Map();
-        data.forEach(d => {
-            if(!m.has(d[key])) m.set(d[key], {s:0, c:0});
-            m.get(d[key]).s += d.Aprobación;
-            m.get(d[key]).c++;
-        });
-        return Array.from(m.keys()).map(k => ({
-            label: k, 
-            val: ((m.get(k).s / m.get(k).c) * 100).toFixed(1)
-        }));
-    }
-
-    function update() {
+    function updateCharts() {
         const e = document.getElementById('selE').value;
         const c = document.getElementById('selC').value;
         const f = document.getElementById('selF').value;
 
-        // Histórico
-        let dH = raw.filter(d => d.Estado === e);
-        if(c !== "Todas") dH = dH.filter(d => d.Encuesta === c);
-        draw('chH', 'line', process(dH.sort((a,b)=>new Date(a.Mes)-new Date(b.Mes)), 'Mes'), '#3498db', 'x');
+        // --- LÓGICA DE FILTRADO Y PROCESO ---
+        const process = (data, key) => {
+            const m = new Map();
+            data.forEach(d => {
+                if(!m.has(d[key])) m.set(d[key], {sum:0, count:0});
+                m.get(d[key]).sum += d.Val;
+                m.get(d[key]).count++;
+            });
+            return Array.from(m.keys()).map(k => ({
+                label: k, 
+                val: ((m.get(k).sum / m.get(k).count) * 100).toFixed(1)
+            }));
+        };
 
-        // Ranking
-        let dR = raw;
+        // 1. Histórico (Líneas)
+        let dH = rawData.filter(d => d.Estado === e);
+        if(c !== "Todas") dH = dH.filter(d => d.Encuesta === c);
+        render('chH', 'line', process(dH.sort((a,b) => new Date(a.Mes) - new Date(b.Mes)), 'Mes'), '#3498db', 'x', 'badgeH');
+
+        // 2. Ranking (Barras Horizontales con Posición)
+        let dR = rawData;
         if(f !== "Todas") dR = dR.filter(d => d.Mes === f);
         if(c !== "Todas") dR = dR.filter(d => d.Encuesta === c);
         const rk = process(dR, 'Estado').sort((a,b) => b.val - a.val);
-        draw('chR', 'bar', {
+        render('chR', 'bar', {
             labels: rk.map((x, i) => `${i+1}. ${x.label}`),
             values: rk.map(x => x.val)
-        }, '#2ecc71', 'y');
+        }, '#2ecc71', 'y', 'badgeR');
 
-        // Comparativa
-        let dC = raw.filter(d => d.Estado === e);
+        // 3. Comparativa (Barras)
+        let dC = rawData.filter(d => d.Estado === e);
         if(f !== "Todas") dC = dC.filter(d => d.Mes === f);
-        draw('chC', 'bar', process(dC.sort((a,b)=>b.val-a.val), 'Encuesta'), '#9b59b6', 'x');
+        render('chC', 'bar', process(dC.sort((a,b) => b.val - a.val), 'Encuesta'), '#9b59b6', 'x', 'badgeC');
     }
 
-    function draw(id, type, data, color, axis) {
+    function render(id, type, data, color, axis, badgeId) {
         const labels = data.labels || data.map(i => i.label);
         const values = data.values || data.map(i => i.val);
-        const avg = values.length ? (values.reduce((a,b)=>a+parseFloat(b),0)/values.length).toFixed(1) : 0;
+        const avg = values.length ? (values.reduce((a,b) => a + parseFloat(b), 0) / values.length).toFixed(1) : 0;
+        document.getElementById(badgeId).innerText = `Promedio: ${avg}%`;
 
         if(charts[id]) charts[id].destroy();
 
         const ctx = document.getElementById(id);
-        if(id === 'chR') ctx.height = Math.max(labels.length * 30, 400);
+        
+        // AJUSTE CRÍTICO: El Ranking debe tener altura suficiente para todos los estados
+        if(id === 'chR') {
+            ctx.parentElement.style.height = (labels.length * 35) + "px";
+        }
 
         charts[id] = new Chart(ctx.getContext('2d'), {
             type: type,
@@ -195,12 +189,12 @@
                     legend: { display: false },
                     annotation: {
                         annotations: {
-                            p: {
+                            line1: {
                                 type: 'line',
                                 [axis === 'y' ? 'xMin' : 'yMin']: avg,
                                 [axis === 'y' ? 'xMax' : 'yMax']: avg,
-                                borderColor: 'black', borderDash: [5,5], borderWidth: 2,
-                                label: { display: true, content: 'Prom: '+avg+'%', position: 'end' }
+                                borderColor: '#333', borderDash: [6, 6], borderWidth: 2,
+                                label: { display: true, content: 'Promedio: ' + avg + '%', position: 'end', backgroundColor: 'rgba(0,0,0,0.8)' }
                             }
                         }
                     }
