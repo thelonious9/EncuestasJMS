@@ -2,81 +2,70 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Electoral Avanzado</title>
+    <title>Dashboard Electoral Pro</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding: 20px; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; margin: 0; padding: 20px; color: #2d3436; }
         .container { max-width: 1200px; margin: auto; }
         header { text-align: center; margin-bottom: 30px; }
         
-        /* Estilo de los filtros (Parecido a Excel) */
         .filters-bar { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
             gap: 15px; 
             background: white; 
             padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 25px;
         }
         .filter-item { display: flex; flex-direction: column; }
-        label { font-weight: bold; font-size: 0.9em; margin-bottom: 5px; color: #666; }
-        select { padding: 10px; border-radius: 5px; border: 1px solid #ddd; background: #fff; cursor: pointer; }
+        label { font-weight: bold; font-size: 0.85em; margin-bottom: 8px; color: #636e72; text-transform: uppercase; }
+        select { padding: 12px; border-radius: 8px; border: 1px solid #dfe6e9; background: #fff; font-size: 14px; outline: none; transition: border 0.3s; }
+        select:focus { border-color: #0984e3; }
 
-        /* Layout de Gráficos */
-        .dashboard-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-        }
-        .chart-card { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            min-height: 400px;
-        }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .chart-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); min-height: 450px; }
         .full-width { grid-column: 1 / -1; }
-        h3 { margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.1em; }
+        h3 { margin-top: 0; border-bottom: 1px solid #f1f2f6; padding-bottom: 15px; font-size: 1.2em; color: #2d3436; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Monitor de Aprobación de Gobernadores</h1>
+        <h1>📊 Monitor de Opinión Pública</h1>
     </header>
 
     <div class="filters-bar">
         <div class="filter-item">
-            <label>1. Seleccionar Estado / Gobernador:</label>
+            <label>📍 Estado / Gobernador:</label>
             <select id="selEstado"></select>
         </div>
         <div class="filter-item">
-            <label>2. Encuestadora (Filtro Global):</label>
+            <label>🔍 Encuestadora:</label>
             <select id="selEncuesta"></select>
         </div>
         <div class="filter-item">
-            <label>3. Fecha de Corte (para Rankings):</label>
+            <label>📅 Fecha de Corte:</label>
             <select id="selFecha"></select>
         </div>
     </div>
 
     <div class="dashboard-grid">
         <div class="chart-card full-width">
-            <h3>📈 Seguimiento Histórico de Aprobación (Estado Seleccionado)</h3>
+            <h3>📈 Seguimiento Histórico de Aprobación</h3>
             <canvas id="chartHistorico"></canvas>
         </div>
 
         <div class="chart-card">
-            <h3>🏆 Ranking Nacional (En la Fecha Seleccionada)</h3>
+            <h3>🏆 Ranking Nacional de Aprobación</h3>
             <canvas id="chartRanking"></canvas>
         </div>
 
         <div class="chart-card">
-            <h3>⚖️ Comparativa por Encuestadora (Estado y Fecha Seleccionada)</h3>
+            <h3>⚖️ Comparativa: ¿Qué dicen las Encuestadoras?</h3>
             <canvas id="chartEncuestas"></canvas>
         </div>
     </div>
@@ -86,15 +75,15 @@
     let rawData = [];
     let chartH, chartR, chartE;
 
-    // Cargar Datos
+    // 1. Cargar y Limpiar Datos
     Papa.parse('datos.csv', {
         download: true,
         header: true,
         dynamicTyping: true,
         skipEmptyLines: true,
         complete: function(results) {
-            // Ordenar por fecha cronológicamente de inicio
-            rawData = results.data.sort((a, b) => new Date(a.Mes) - new Date(b.Mes));
+            rawData = results.data.filter(d => d.Estado && d.Aprobación != null)
+                                  .sort((a, b) => new Date(a.Mes) - new Date(b.Mes));
             initApp();
         }
     });
@@ -102,21 +91,36 @@
     function initApp() {
         const estados = [...new Set(rawData.map(d => d.Estado))].sort();
         const encuestas = [...new Set(rawData.map(d => d.Encuesta))].sort();
-        const fechas = [...new Set(rawData.map(d => d.Mes))]; // Ya vienen ordenadas por el sort inicial
+        const fechas = [...new Set(rawData.map(d => d.Mes))].sort().reverse();
 
-        populateSelect('selEstado', estados);
-        populateSelect('selEncuesta', encuestas);
-        populateSelect('selFecha', fechas.reverse()); // La más reciente primero para el ranking
+        populateSelect('selEstado', estados, false);
+        populateSelect('selEncuesta', encuestas, true); // True activa "Todas"
+        populateSelect('selFecha', fechas, true);
 
-        // Listeners
         document.querySelectorAll('select').forEach(s => s.addEventListener('change', updateAllCharts));
-        
         updateAllCharts();
     }
 
-    function populateSelect(id, items) {
+    function populateSelect(id, items, addAllOption) {
         const sel = document.getElementById(id);
+        if (addAllOption) sel.add(new Option("-- Todas --", "Todas"));
         items.forEach(item => sel.add(new Option(item, item)));
+    }
+
+    // Función auxiliar para promediar datos cuando se selecciona "Todas"
+    function groupAndAverage(data, groupByField) {
+        const groups = {};
+        data.forEach(d => {
+            if (!groups[d[groupByField]]) {
+                groups[d[groupByField]] = { sum: 0, count: 0 };
+            }
+            groups[d[groupByField]].sum += d.Aprobación;
+            groups[d[groupByField]].count++;
+        });
+        return Object.keys(groups).map(key => ({
+            label: key,
+            val: (groups[key].sum / groups[key].count * 100).toFixed(1)
+        }));
     }
 
     function updateAllCharts() {
@@ -129,67 +133,75 @@
         renderPorEncuestadora(estado, fecha);
     }
 
-    // --- GRÁFICO 1: LÍNEAS (HISTÓRICO) ---
+    // --- GRÁFICO 1: HISTÓRICO (Líneas) ---
     function renderHistorico(estado, encuesta) {
-        const data = rawData.filter(d => d.Estado === estado && d.Encuesta === encuesta);
-        const labels = data.map(d => d.Mes);
-        const values = data.map(d => (d.Aprobación * 100).toFixed(1));
+        let filtered = rawData.filter(d => d.Estado === estado);
+        if (encuesta !== "Todas") filtered = filtered.filter(d => d.Encuesta === encuesta);
+        
+        const averaged = groupAndAverage(filtered, 'Mes');
 
         if (chartH) chartH.destroy();
         chartH = new Chart(document.getElementById('chartHistorico'), {
             type: 'line',
             data: {
-                labels: labels,
+                labels: averaged.map(d => d.label),
                 datasets: [{
-                    label: `Aprobación de ${estado} (${encuesta})`,
-                    data: values,
-                    borderColor: '#2196F3',
-                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                    label: `Aprobación en ${estado} (${encuesta === 'Todas' ? 'Promedio' : encuesta})`,
+                    data: averaged.map(d => d.val),
+                    borderColor: '#0984e3',
+                    backgroundColor: 'rgba(9, 132, 227, 0.1)',
                     fill: true,
-                    tension: 0.3,
-                    pointRadius: 5
+                    tension: 0.3
                 }]
             },
-            options: { scales: { y: { min: 0, max: 100 } } }
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100 } } }
         });
     }
 
-    // --- GRÁFICO 2: BARRAS (RANKING) ---
+    // --- GRÁFICO 2: RANKING (Barras Horizontales) ---
     function renderRanking(fecha, encuesta) {
-        const data = rawData.filter(d => d.Mes === fecha && d.Encuesta === encuesta)
-                            .sort((a, b) => b.Aprobación - a.Aprobación);
-        
+        let filtered = rawData;
+        if (fecha !== "Todas") filtered = filtered.filter(d => d.Mes === fecha);
+        if (encuesta !== "Todas") filtered = filtered.filter(d => d.Encuesta === encuesta);
+
+        let averaged = groupAndAverage(filtered, 'Estado');
+        averaged.sort((a, b) => b.val - a.val); // Ordenar Ranking
+
         if (chartR) chartR.destroy();
         chartR = new Chart(document.getElementById('chartRanking'), {
             type: 'bar',
             data: {
-                labels: data.map(d => d.Estado),
+                labels: averaged.map(d => d.label),
                 datasets: [{
                     label: '% Aprobación',
-                    data: data.map(d => (d.Aprobación * 100).toFixed(1)),
-                    backgroundColor: '#4CAF50'
+                    data: averaged.map(d => d.val),
+                    backgroundColor: averaged.map(d => d.val > 50 ? '#00b894' : '#d63031')
                 }]
             },
-            options: { indexAxis: 'y', scales: { x: { max: 100 } } }
+            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { max: 100 } } }
         });
     }
 
-    // --- GRÁFICO 3: BARRAS (POR ENCUESTADORA) ---
+    // --- GRÁFICO 3: COMPARATIVA ENCUESTADORAS (Ordenado) ---
     function renderPorEncuestadora(estado, fecha) {
-        const data = rawData.filter(d => d.Estado === estado && d.Mes === fecha);
+        let filtered = rawData.filter(d => d.Estado === estado);
+        if (fecha !== "Todas") filtered = filtered.filter(d => d.Mes === fecha);
         
+        let averaged = groupAndAverage(filtered, 'Encuesta');
+        averaged.sort((a, b) => b.val - a.val); // ORDENAR DE MAYOR A MENOR
+
         if (chartE) chartE.destroy();
         chartE = new Chart(document.getElementById('chartEncuestas'), {
             type: 'bar',
             data: {
-                labels: data.map(d => d.Encuesta),
+                labels: averaged.map(d => d.label),
                 datasets: [{
-                    label: 'Aprobación por Casa Encuestadora',
-                    data: data.map(d => (d.Aprobación * 100).toFixed(1)),
-                    backgroundColor: '#FF9800'
+                    label: 'Nivel de Aprobación %',
+                    data: averaged.map(d => d.val),
+                    backgroundColor: '#6c5ce7'
                 }]
             },
-            options: { scales: { y: { max: 100, beginAtZero: true } } }
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100 } } }
         });
     }
 </script>
