@@ -3,79 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablero Electoral - Ranking Completo</title>
+    <title>Tablero Electoral Profesional</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; --red: #e74c3c; --green: #27ae60; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 15px; color: var(--primary); }
-        .container { max-width: 1300px; margin: auto; }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f1f2f6; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: auto; }
         
         .filters-bar { 
-            display: flex; flex-wrap: wrap; gap: 15px; 
-            background: white; padding: 15px; border-radius: 10px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px;
+            display: flex; flex-wrap: wrap; gap: 15px; background: white; 
+            padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px; border-top: 5px solid var(--accent);
         }
-        .filter-item { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
-        label { font-size: 0.75rem; font-weight: bold; margin-bottom: 5px; color: #7f8c8d; text-transform: uppercase; }
-        select { padding: 10px; border-radius: 5px; border: 1px solid #dcdde1; font-size: 14px; cursor: pointer; }
+        .filter-item { flex: 1; min-width: 250px; display: flex; flex-direction: column; }
+        label { font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; color: #57606f; }
+        select { padding: 12px; border-radius: 8px; border: 1px solid #ced4da; background: #fff; font-size: 14px; }
 
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; }
-        .chart-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 25px; }
+        .chart-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .full-width { grid-column: 1 / -1; }
         
-        /* Contenedor con scroll para el Ranking si es necesario */
-        .canvas-container { position: relative; width: 100%; min-height: 350px; }
-        .ranking-container { height: 700px; overflow-y: auto; border: 1px solid #eee; border-radius: 5px; padding: 10px; }
+        /* Contenedores de gráficos */
+        .canvas-holder { position: relative; width: 100%; height: 400px; }
+        .ranking-scroll { height: 600px; overflow-y: auto; border: 1px solid #f1f2f6; padding: 10px; border-radius: 8px; }
         
-        h3 { margin: 0 0 15px 0; font-size: 1.1rem; color: var(--primary); border-left: 5px solid var(--accent); padding-left: 12px; }
-        #loading { position: fixed; top: 0; left: 0; width: 100%; padding: 10px; background: var(--accent); color: white; text-align: center; display: none; z-index: 1000; font-weight: bold; }
+        h3 { margin: 0 0 20px 0; font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; }
+        #status-msg { position: fixed; top: 0; left: 0; width: 100%; padding: 10px; background: #2ecc71; color: white; text-align: center; display: none; z-index: 9999; }
+        .error-msg { background: #e74c3c !important; }
     </style>
 </head>
 <body>
 
-<div id="loading">Procesando datos...</div>
+<div id="status-msg">Cargando datos...</div>
 
 <div class="container">
-    <header style="text-align: center; padding: 10px 0 20px 0;">
-        <h1 style="margin:0; font-size: 1.8rem;">📈 Monitor de Aprobación de Gobernadores</h1>
+    <header style="text-align: center; margin-bottom: 30px;">
+        <h1 style="margin:0; color: var(--primary);">Monitor de Aprobación de Gobernadores</h1>
+        <p style="color: #7f8c8d;">Análisis comparativo de casas encuestadoras y rankings estatales</p>
     </header>
 
     <div class="filters-bar">
         <div class="filter-item">
-            <label>📍 Estado</label>
+            <label>📍 SELECCIONAR ESTADO</label>
             <select id="selEstado"></select>
         </div>
         <div class="filter-item">
-            <label>🔍 Encuestadora</label>
+            <label>🔍 CASA ENCUESTADORA</label>
             <select id="selEncuesta"></select>
         </div>
         <div class="filter-item">
-            <label>📅 Fecha</label>
+            <label>📅 FECHA DE CORTE</label>
             <select id="selFecha"></select>
         </div>
     </div>
 
     <div class="dashboard-grid">
         <div class="chart-card full-width">
-            <h3>Seguimiento Histórico (Línea de tiempo)</h3>
-            <div class="canvas-container">
+            <h3>📈 Seguimiento Histórico <small id="avgH" style="font-weight: normal; color: #7f8c8d;"></small></h3>
+            <div class="canvas-holder">
                 <canvas id="chartHistorico"></canvas>
             </div>
         </div>
 
         <div class="chart-card">
-            <h3>Ranking Nacional (Orden de Aprobación)</h3>
-            <div class="ranking-container">
+            <h3>🏆 Ranking Nacional (Posiciones) <small id="avgR" style="font-weight: normal; color: #7f8c8d;"></small></h3>
+            <div class="ranking-scroll">
                 <canvas id="chartRanking"></canvas>
             </div>
         </div>
 
         <div class="chart-card">
-            <h3>Comparativa por Casa Encuestadora</h3>
-            <div class="canvas-container">
+            <h3>⚖️ Comparativa entre Encuestadoras <small id="avgE" style="font-weight: normal; color: #7f8c8d;"></small></h3>
+            <div class="canvas-holder">
                 <canvas id="chartEncuestas"></canvas>
             </div>
         </div>
@@ -83,17 +85,37 @@
 </div>
 
 <script>
+    // IMPORTANTE: Registrar el plugin de anotaciones para Chart.js 4
+    Chart.register(window['chartjs-plugin-annotation']);
+
     let rawData = [];
     let charts = {};
+    const CSV_NAME = 'datos.csv'; // Verifica que se llame exactamente así en GitHub
 
-    // Cargar y Procesar
-    Papa.parse('datos.csv', {
+    // Iniciar Carga
+    showStatus("Cargando archivo CSV...");
+    Papa.parse(CSV_NAME, {
         download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
         complete: function(results) {
+            if(results.data.length === 0) {
+                showStatus("ERROR: El archivo CSV está vacío o no se encontró.", true);
+                return;
+            }
+            // Filtrar datos válidos
             rawData = results.data.filter(d => d.Estado && d.Aprobación != null);
+            console.log("Datos cargados:", rawData.length);
             initApp();
-        }
+        },
+        error: function() { showStatus("ERROR: No se pudo leer el archivo 'datos.csv'.", true); }
     });
+
+    function showStatus(msg, isError = false) {
+        const el = document.getElementById('status-msg');
+        el.innerText = msg;
+        el.style.display = 'block';
+        if(isError) el.classList.add('error-msg');
+        else setTimeout(() => el.style.display = 'none', 3000);
+    }
 
     function initApp() {
         const estados = [...new Set(rawData.map(d => d.Estado))].sort();
@@ -104,25 +126,14 @@
         populate('selEncuesta', encuestas, true);
         populate('selFecha', fechas, true);
 
-        document.querySelectorAll('select').forEach(s => {
-            s.onchange = () => {
-                document.getElementById('loading').style.display = 'block';
-                setTimeout(updateAll, 50);
-            };
-        });
+        document.querySelectorAll('select').forEach(s => s.onchange = updateAll);
         updateAll();
     }
 
     function populate(id, items, hasAll) {
         const sel = document.getElementById(id);
-        if(hasAll) sel.add(new Option("--- TODAS ---", "Todas"));
+        if(hasAll) sel.add(new Option("--- TODAS LAS OPCIONES ---", "Todas"));
         items.forEach(i => sel.add(new Option(i, i)));
-    }
-
-    function getAverage(data) {
-        if (data.length === 0) return 0;
-        const sum = data.reduce((a, b) => a + parseFloat(b.val), 0);
-        return (sum / data.length).toFixed(1);
     }
 
     function updateAll() {
@@ -130,28 +141,28 @@
         const enc = document.getElementById('selEncuesta').value;
         const fec = document.getElementById('selFecha').value;
 
-        // 1. Histórico
+        // 1. Datos Histórico
         let dH = rawData.filter(d => d.Estado === est);
         if(enc !== "Todas") dH = dH.filter(d => d.Encuesta === enc);
-        const dataH = process(dH.sort((a,b)=>new Date(a.Mes)-new Date(b.Mes)), 'Mes');
-        render('chartHistorico', 'line', dataH, '#3498db');
+        const resH = process(dH.sort((a,b)=>new Date(a.Mes)-new Date(b.Mes)), 'Mes');
+        render('chartHistorico', 'line', resH, '#3498db', 'x', 'avgH');
 
-        // 2. Ranking
+        // 2. Datos Ranking
         let dR = rawData;
         if(fec !== "Todas") dR = dR.filter(d => d.Mes === fec);
         if(enc !== "Todas") dR = dR.filter(d => d.Encuesta === enc);
         const ranking = process(dR, 'Estado').sort((a,b) => b.val - a.val);
-        // Agregar posición al nombre
-        const rankedLabels = ranking.map((item, index) => `${index + 1}. ${item.label}`);
-        render('chartRanking', 'bar', { labels: rankedLabels, values: ranking.map(i => i.val) }, '#2ecc71', 'y');
+        const rankedData = {
+            labels: ranking.map((item, i) => `${i + 1}. ${item.label}`),
+            values: ranking.map(i => i.val)
+        };
+        render('chartRanking', 'bar', rankedData, '#2ecc71', 'y', 'avgR');
 
-        // 3. Encuestas
+        // 3. Datos Encuestas
         let dE = rawData.filter(d => d.Estado === est);
         if(fec !== "Todas") dE = dE.filter(d => d.Mes === fec);
         const comp = process(dE, 'Encuesta').sort((a,b) => b.val - a.val);
-        render('chartEncuestas', 'bar', comp, '#9b59b6');
-
-        document.getElementById('loading').style.display = 'none';
+        render('chartEncuestas', 'bar', comp, '#9b59b6', 'x', 'avgE');
     }
 
     function process(data, field) {
@@ -165,18 +176,19 @@
         return Array.from(map.keys()).map(k => ({ label: k, val: ((map.get(k).sum / map.get(k).count) * 100).toFixed(1) }));
     }
 
-    function render(id, type, data, color, axis = 'x') {
+    function render(id, type, data, color, axis, avgLabelId) {
         const labels = data.labels || data.map(i => i.label);
         const values = data.values || data.map(i => i.val);
-        const avg = getAverage(values.map(v => ({val: v})));
+        
+        // Calcular Promedio para la línea
+        const sum = values.reduce((a, b) => a + parseFloat(b), 0);
+        const avg = values.length > 0 ? (sum / values.length).toFixed(1) : 0;
+        document.getElementById(avgLabelId).innerText = `| Promedio: ${avg}%`;
 
         if(charts[id]) charts[id].destroy();
 
-        // Ajuste de altura para el ranking
         const canvas = document.getElementById(id);
-        if(id === 'chartRanking') {
-            canvas.parentElement.style.height = (labels.length * 30) + "px";
-        }
+        if(id === 'chartRanking') canvas.height = Math.max(labels.length * 30, 400);
 
         charts[id] = new Chart(canvas.getContext('2d'), {
             type: type,
@@ -200,16 +212,12 @@
                                 type: 'line',
                                 [axis === 'y' ? 'xMin' : 'yMin']: avg,
                                 [axis === 'y' ? 'xMax' : 'yMax']: avg,
-                                borderColor: 'black',
+                                borderColor: '#2d3436',
                                 borderWidth: 2,
-                                borderDash: [6, 6],
+                                borderDash: [5, 5],
                                 label: {
-                                    display: true,
-                                    content: 'Promedio: ' + avg + '%',
-                                    position: 'end',
-                                    backgroundColor: 'rgba(0,0,0,0.7)',
-                                    color: '#fff',
-                                    font: { size: 10 }
+                                    display: true, content: 'Promedio: ' + avg + '%',
+                                    position: 'end', backgroundColor: 'rgba(45, 52, 54, 0.8)'
                                 }
                             }
                         }
