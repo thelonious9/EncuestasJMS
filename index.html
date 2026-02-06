@@ -199,6 +199,118 @@
         .btn-export:hover {
             background: #2980b9;
         }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #dcdde1;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            color: #7f8c8d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .rubro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* Timeline Slicer (Excel style) */
+        .timeline-container {
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            overflow-x: auto;
+            display: flex !important;
+            /* Forzar flex */
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 12px;
+            border: 1px solid #e1e8ed;
+            scrollbar-width: thin;
+        }
+
+        .timeline-item {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #fdfdfd;
+            border: 1px solid #d1d9e6;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .timeline-item:hover {
+            background: #f5f7fa;
+            border-color: #3498db;
+            transform: translateY(-1px);
+        }
+
+        .timeline-item.active {
+            background: #3498db;
+            color: #fff;
+            border-color: #2980b9;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+        }
+
+        .timeline-item .mes {
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .timeline-item .anio {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .timeline-item.todas {
+            background: #ecf0f1;
+            font-weight: 800;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 900px) {
+
+            .dashboard,
+            .rubro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -210,47 +322,132 @@
             <button class="btn-export" onclick="exportToPDF()">📑 Exportar PDF</button>
         </div>
 
+        <div class="tabs export-exclude">
+            <button class="tab-btn active" onclick="switchTab('general')">General</button>
+            <button class="tab-btn" id="btn-rubro" onclick="switchTab('rubro')">Por Rubro</button>
+            <button class="tab-btn" id="btn-comparativo" onclick="switchTab('comparativo')">Comparativo</button>
+            <button class="tab-btn" id="btn-revocacion" onclick="switchTab('revocacion')">Revocación</button>
+        </div>
+
+        <div id="timeline" class="timeline-container export-exclude">
+            <!-- Cargado dinámicamente -->
+        </div>
+
         <div class="filters export-exclude">
-            <div class="f-group" style="display: none;"><label>📍 Estado / Gobernador</label><select id="selE"></select>
+            <div class="f-group" id="group-estado" style="display:none;"><label>📍 Estado / Gobernador</label><select
+                    id="selE"></select>
             </div>
             <div class="f-group"><label>🔍 Casa Encuestadora</label><select id="selC"></select></div>
-            <div class="f-group"><label>📅 Fecha de Corte</label><select id="selF"></select></div>
+            <div class="f-group" style="display:none;"><label>📅 Fecha de Corte</label><select id="selF"></select></div>
+            <div class="f-group" id="group-rubro" style="display:none;"><label>📂 Rubro específico</label><select
+                    id="selR"></select></div>
+            <div class="f-group" id="group-acuerdo" style="display:none;"><label>🤝 Acuerdo PED</label><select
+                    id="selA"></select></div>
         </div>
 
-        <div class="summary-bar">
-            <div class="summary-card max">
-                <div class="label">📈 Máxima Aprobación</div>
-                <div id="m-max" class="value">-- %</div>
-                <div id="m-max-e" class="sub-value">--</div>
+        <div id="tab-general" class="tab-content active">
+            <div class="summary-bar">
+                <div class="summary-card max">
+                    <div class="label">📈 Máxima Aprobación</div>
+                    <div id="m-max" class="value">-- %</div>
+                    <div id="m-max-e" class="sub-value">--</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">📊 Promedio de Aprobación</div>
+                    <div id="m-avg" class="value">-- %</div>
+                    <div id="m-period" class="sub-value">En el periodo seleccionado</div>
+                </div>
+                <div class="summary-card min">
+                    <div class="label">📉 Mínima Aprobación</div>
+                    <div id="m-min" class="value">-- %</div>
+                    <div id="m-min-e" class="sub-value">--</div>
+                </div>
             </div>
-            <div class="summary-card">
-                <div class="label">📊 Promedio de Aprobación</div>
-                <div id="m-avg" class="value">-- %</div>
-                <div id="m-period" class="sub-value">En el periodo seleccionado</div>
-            </div>
-            <div class="summary-card min">
-                <div class="label">📉 Mínima Aprobación</div>
-                <div id="m-min" class="value">-- %</div>
-                <div id="m-min-e" class="sub-value">--</div>
+
+            <div class="dashboard">
+                <div class="card full">
+                    <h3>📈 Seguimiento Histórico <span id="badgeH" class="avg-badge">Promedio: --</span></h3>
+                    <div class="chart-container"><canvas id="chH"></canvas></div>
+                </div>
+
+                <div class="card">
+                    <h3>🏆 Posición de Hidalgo en el ranking nacional <span id="badgeR" class="avg-badge">Promedio:
+                            --</span></h3>
+                    <div id="ranking-container"><canvas id="chR"></canvas></div>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Por Casa Encuestadora <span id="badgeC" class="avg-badge">Promedio: --</span></h3>
+                    <div class="chart-container"><canvas id="chC"></canvas></div>
+                </div>
             </div>
         </div>
 
-        <div class="dashboard">
+        <div id="tab-rubro" class="tab-content">
+            <div class="rubro-grid">
+                <div class="card">
+                    <h3>🕸️ Desempeño por Categorías (Radar)</h3>
+                    <div class="chart-container" style="height: 400px;"><canvas id="chRadar"></canvas></div>
+                </div>
+                <div class="card">
+                    <h3>🤝 Desempeño por Acuerdos PED (Radar)</h3>
+                    <div class="chart-container" style="height: 400px;"><canvas id="chRadarAcuerdos"></canvas></div>
+                </div>
+                <div class="card full">
+                    <h3>📈 Seguimiento Histórico del Rubro: <span id="txtRubroHistory">Seleccione un rubro</span></h3>
+                    <div class="chart-container" style="height: 350px;"><canvas id="chRubroHistory"></canvas></div>
+                </div>
+                <div class="card full">
+                    <h3>🏆 Ranking Nacional: <span id="txtRubro">Seleccione un rubro</span></h3>
+                    <div id="rubro-ranking-container" style="position: relative; width: 100%;"><canvas
+                            id="chRubroRank"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-comparativo" class="tab-content">
+            <div class="card full" style="margin-bottom: 20px;">
+                <div
+                    style="display: flex; gap: 20px; align-items: center; justify-content: center; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <div class="f-group" style="flex: 1;"><label>Gobernador A</label><select id="selCompA"></select>
+                    </div>
+                    <div style="font-weight: bold; font-size: 1.5rem;">VS</div>
+                    <div class="f-group" style="flex: 1;"><label>Gobernador B</label><select id="selCompB"></select>
+                    </div>
+                </div>
+            </div>
             <div class="card full">
-                <h3>📈 Seguimiento Histórico <span id="badgeH" class="avg-badge">Promedio: --</span></h3>
-                <div class="chart-container"><canvas id="chH"></canvas></div>
+                <h3>⚖️ Comparativa de Rubros</h3>
+                <div class="chart-container" style="height: 600px;"><canvas id="chComp"></canvas></div>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>🏆 Posición de Hidalgo en el ranking nacional <span id="badgeR" class="avg-badge">Promedio:
-                        --</span></h3>
-                <div id="ranking-container"><canvas id="chR"></canvas></div>
+        <div id="tab-revocacion" class="tab-content">
+            <div class="dashboard">
+                <div class="card full">
+                    <h3>📊 Comparativa: Aprobación (Arias) vs Revocación (Hidalgo)</h3>
+                    <div class="metrics-grid" style="margin-bottom: 20px;">
+                        <div class="metric-card">
+                            <span class="m-title">¿Que Siga?</span>
+                            <span class="m-val" id="rev-siga">--%</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="m-title">¿Revocar?</span>
+                            <span class="m-val" id="rev-revoca">--%</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="m-title">Aprobación (Arias)</span>
+                            <span class="m-val" id="rev-aprob-arias">--%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container" style="height: 450px;"><canvas id="chRevHistory"></canvas></div>
+                </div>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>📊 Por Casa Encuestadora <span id="badgeC" class="avg-badge">Promedio: --</span></h3>
-                <div class="chart-container"><canvas id="chC"></canvas></div>
-            </div>
+        <div id="debug-info"
+            style="margin-top: 50px; font-size: 0.8rem; color: #95a5a6; border-top: 1px solid #ddd; padding-top: 10px;">
+            Estado de carga: <span id="load-status">Iniciando...</span>
         </div>
     </div>
 
@@ -259,105 +456,395 @@
         Chart.register(window['chartjs-plugin-annotation']);
 
         let rawData = [];
+        let rubroData = [];
+        let revData = [];
         let charts = {};
+        let currentTab = 'general';
         const FILE_NAME = 'datos.csv';
+        const RUBRO_FILE = 'Rubro.csv';
+        const REV_FILE = 'Revocación.csv';
 
         // 1. UTILIDADES DE FECHA
-        const MESES = { 'ene': 0, 'feb': 1, 'mar': 2, 'abr': 3, 'may': 4, 'jun': 5, 'jul': 6, 'ago': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dic': 11 };
+        const MESES = {
+            'ene': 0, 'feb': 1, 'mar': 2, 'abr': 3, 'may': 4, 'jun': 5, 'jul': 6, 'ago': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dic': 11,
+            'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3, 'mayo': 4, 'junio': 5, 'julio': 6, 'agosto': 7, 'septiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11
+        };
+        const MESES_REV = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
         function parseMes(s) {
-            if (!s) return new Date(0);
-            const parts = s.toLowerCase().split(' ');
-            const mes = MESES[parts[0]] ?? 0;
-            const anio = parseInt(parts[1]) + 2000;
+            if (!s || s === 'Todas' || s === 'S/F') return new Date(0);
+            const str = String(s).toLowerCase().trim();
+
+            // 1. Formato ISO o similar: 2025-01-01
+            if (str.includes('-') && str.split('-').length === 3) {
+                const d = new Date(str + (str.includes('T') ? '' : "T00:00:00"));
+                if (!isNaN(d.getTime())) return d;
+            }
+
+            // 2. Formatos: "sep-22" o "enero 2025" o "septiembre 2022"
+            const parts = str.split(/[\s-]+/);
+            const mesStr = parts[0];
+            const anioStr = parts[1];
+
+            const mes = MESES[mesStr] !== undefined ? MESES[mesStr] : 0;
+            let anio = parseInt(anioStr);
+            if (!isNaN(anio)) {
+                if (anio < 100) anio += 2000;
+            } else {
+                anio = new Date().getFullYear();
+            }
             return new Date(anio, mes, 1);
         }
 
+        function formatMes(date) {
+            if (!date || isNaN(date.getTime()) || date.getTime() === 0) return "S/F";
+            return `${MESES_REV[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
         // 2. CARGA DE DATOS
-        Papa.parse(FILE_NAME, {
-            download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
-            complete: function (results) {
-                console.log("Datos cargados:", results.data.length, "filas");
-                if (results.data.length === 0) { console.error("CSV vacío"); return; }
+        function setStatus(msg) {
+            document.getElementById('load-status').innerText = msg;
+            console.log(msg);
+        }
 
-                const keys = Object.keys(results.data[0]);
-                console.log("Columnas detectadas:", keys);
-
-                // Buscar la columna de aprobación sin importar acentos o mayúsculas
-                let apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
-                if (!apKey) {
-                    apKey = keys[6]; // Asumir posición 7 si no se encuentra por nombre
-                    console.warn("No se encontró columna 'Aprobación' por nombre, usando columna índice 6:", apKey);
-                } else {
-                    console.log("Columna de aprobación identificada como:", apKey);
+        function loadData() {
+            setStatus("Cargando datos principales (" + FILE_NAME + ")...");
+            Papa.parse(FILE_NAME, {
+                download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                complete: function (results) {
+                    if (results.data && results.data.length > 0) {
+                        processMainData(results.data);
+                        setStatus("Datos principales cargados. Cargando rubros...");
+                        loadRubroData();
+                    } else {
+                        setStatus("Error: El archivo " + FILE_NAME + " está vacío o no se encontró.");
+                    }
+                },
+                error: function (err) {
+                    setStatus("Error al cargar " + FILE_NAME + ": " + err);
                 }
+            });
+        }
 
-                rawData = results.data.filter(d => d.Estado && d[apKey] != null).map(d => {
-                    const valStr = String(d[apKey]).replace(',', '.');
-                    return {
-                        ...d,
-                        Estado: String(d.Estado).trim(),
-                        Encuesta: d.Encuesta ? String(d.Encuesta).trim() : "Desconocida",
-                        Mes: d.Mes ? String(d.Mes).trim() : "S/F",
-                        Val: parseFloat(valStr)
-                    };
-                }).filter(d => !isNaN(d.Val));
+        function processMainData(data) {
+            const keys = Object.keys(data[0]);
+            let apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
+            if (!apKey) apKey = keys[6];
 
-                console.log("Datos procesados (con valor válido):", rawData.length);
-                initDashboard();
-            }
-        });
+            rawData = data.filter(d => d.Estado && d[apKey] != null).map(d => {
+                const valStr = String(d[apKey]).replace(',', '.');
+                return {
+                    ...d,
+                    Estado: String(d.Estado).trim(),
+                    Encuesta: d.Encuesta ? String(d.Encuesta).trim() : "Desconocida",
+                    Mes: formatMes(parseMes(d.Mes)), // NORMALIZACIÓN
+                    Val: parseFloat(valStr) * 100
+                };
+            }).filter(d => !isNaN(d.Val));
+            setStatus("Datos principales procesados: " + rawData.length + " filas.");
+        }
+
+        function loadRubroData() {
+            Papa.parse(RUBRO_FILE, {
+                download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                complete: function (results) {
+                    if (results.data && results.data.length > 0) {
+                        const keys = Object.keys(results.data[0]);
+                        // Buscar columna de aprobación (maneja encoding)
+                        let apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
+                        if (!apKey) apKey = 'Aprobación';
+
+                        rubroData = results.data.map(d => {
+                            return {
+                                ...d,
+                                Estado: d.Estado ? String(d.Estado).trim() : "Desconocido",
+                                Encuesta: d.Encuesta ? String(d.Encuesta).trim() : "Desconocida",
+                                Rubros: d.Rubros ? String(d.Rubros).trim() : "Otros",
+                                Mes: formatMes(parseMes(d.Mes)), // NORMALIZACIÓN
+                                Val: parseFloat(String(d[apKey] || 0).replace(',', '.')) * 100
+                            };
+                        }).filter(d => !isNaN(d.Val));
+                        setStatus("Rubros cargados. Cargando datos de revocación...");
+                        loadRevData();
+                    } else {
+                        setStatus("Aviso: El archivo " + RUBRO_FILE + " está vacío. Cargando revocación...");
+                        loadRevData();
+                    }
+                },
+                error: function (err) {
+                    setStatus("Error al cargar " + RUBRO_FILE + ". Continuando con revocación...");
+                    loadRevData();
+                }
+            });
+        }
+
+        function loadRevData() {
+            Papa.parse(REV_FILE, {
+                download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                complete: function (results) {
+                    if (results.data && results.data.length > 0) {
+                        revData = results.data.map(d => ({
+                            ...d,
+                            Estado: d.Estado ? String(d.Estado).trim() : "Desconocido",
+                            Mes: formatMes(parseMes(d.Mes)),
+                            Siga: parseFloat(String(d['Que Siga (%)'] || 0).replace(',', '.')) * 100,
+                            Revoca: parseFloat(String(d['Revocar (%)'] || 0).replace(',', '.')) * 100
+                        }));
+                        setStatus("Datos de revocación cargados. Inicializando...");
+                    } else {
+                        setStatus("Aviso: El archivo " + REV_FILE + " no se encontró.");
+                    }
+                    initDashboard();
+                },
+                error: function (err) {
+                    setStatus("Error al cargar " + REV_FILE + ". Inicializando...");
+                    initDashboard();
+                }
+            });
+        }
+
+        loadData();
 
         function initDashboard() {
-            // RESTRICCIÓN: Solo mostrar Hidalgo
-            const estados = ["Hidalgo"];
-            const encuestas = [...new Set(rawData.map(d => d.Encuesta))].sort();
-            const fechas = [...new Set(rawData.map(d => d.Mes))].sort((a, b) => parseMes(b) - parseMes(a));
+            setStatus("Iniciando componentes del tablero...");
 
-            populate('selE', estados, false);
-            populate('selC', encuestas, true);
-            populate('selF', fechas, true);
+            // 1. Inicializar estados con Promedio Nacional para Comparativo
+            const estados = [...new Set(rawData.map(d => d.Estado))].sort();
+            const hidalgoIdx = estados.indexOf("Hidalgo");
+            const sortedEstados = hidalgoIdx !== -1 ? ["Hidalgo", ...estados.filter(e => e !== "Hidalgo")] : estados;
+            const estadosWithNacional = ["Promedio Nacional", ...sortedEstados];
 
-            document.querySelectorAll('select').forEach(s => s.onchange = updateCharts);
+            populate('selCompA', estadosWithNacional, false);
+            populate('selCompB', estadosWithNacional, false);
+            document.getElementById('selCompB').value = "Promedio Nacional";
+
+            // 2. Población inicial completa de filtros para evitar el problema de "selects vacíos"
+            const encuestasBase = [...new Set(rawData.map(d => d.Encuesta))].sort();
+            const mesesBase = [...new Set(rawData.map(d => d.Mes))].sort((x, y) => parseMes(y) - parseMes(x));
+
+            populate('selC', encuestasBase, true);
+            populate('selF', mesesBase, true);
+
+            if (rubroData.length > 0) {
+                const rubrosBase = [...new Set(rubroData.map(d => d.Rubros))].sort();
+                const acuerdosBase = [...new Set(rubroData.map(d => d.Acuerdo_PED || d['Acuerdo PED']))].filter(x => x).sort();
+                populate('selR', rubrosBase, false);
+                populate('selA', acuerdosBase, true);
+            }
+
+            // 3. Renderizar Timeline inicial
+            renderTimeline(mesesBase, 'Todas');
+
+            // 4. Configurar eventos
+            document.querySelectorAll('select').forEach(s => s.onchange = () => {
+                refreshFilters();
+                updateCharts();
+            });
+
+            setStatus("Dashboard listo.");
             updateCharts();
         }
 
-        function populate(id, items, all) {
+        function refreshFilters() {
+            // Lógica de Cascada Estricta: Cada cambio recalcula lo que es posible ver
+            const c = document.getElementById('selC').value || 'Todas';
+            const f = document.getElementById('selF').value || 'Todas';
+            const r = document.getElementById('selR').value;
+            const a = document.getElementById('selA').value || 'Todas';
+
+            // --- 1. Filtrar Meses disponibles según la Encuesta y Pestaña ---
+            let dsForMes = (currentTab === 'revocacion') ? revData : rawData;
+            if (c !== 'Todas' && currentTab !== 'revocacion') dsForMes = dsForMes.filter(d => d.Encuesta === c);
+            const mesesValidos = [...new Set(dsForMes.map(d => d.Mes))].sort((x, y) => parseMes(y) - parseMes(x));
+
+            // Sincronizar selF y Timeline
+            populate('selF', mesesValidos, true, f);
+            const verifiedF = document.getElementById('selF').value;
+            renderTimeline(mesesValidos, verifiedF);
+
+            // --- 2. Filtrar Encuestas disponibles según el Mes ---
+            let dsForEncu = rawData;
+            if (verifiedF !== 'Todas') dsForEncu = dsForEncu.filter(d => d.Mes === verifiedF);
+            const encuestasValidas = [...new Set(dsForEncu.map(d => d.Encuesta))].sort();
+            populate('selC', encuestasValidas, true, c);
+
+            // --- 3. Filtros de Rubro (Hidalgo) ---
+            if (rubroData.length > 0) {
+                // Rubros basados en Mes, Encuesta y Acuerdo
+                let dsR = rubroData.filter(d => d.Estado === "Hidalgo");
+                if (verifiedF !== 'Todas') dsR = dsR.filter(d => d.Mes === verifiedF);
+                if (c !== 'Todas') dsR = dsR.filter(d => d.Encuesta === c);
+                if (a !== 'Todas') dsR = dsR.filter(d => (d.Acuerdo_PED || d['Acuerdo PED']) === a);
+                const rValidos = [...new Set(dsR.map(d => d.Rubros))].sort();
+                populate('selR', rValidos, false, r);
+
+                // Acuerdos basados en Mes y Encuesta
+                let dsA = rubroData.filter(d => d.Estado === "Hidalgo");
+                if (verifiedF !== 'Todas') dsA = dsA.filter(d => d.Mes === verifiedF);
+                if (c !== 'Todas') dsA = dsA.filter(d => d.Encuesta === c);
+                const aValidos = [...new Set(dsA.map(d => d.Acuerdo_PED || d['Acuerdo PED']))].filter(x => x).sort();
+                populate('selA', aValidos, true, a);
+            }
+        }
+
+        function renderTimeline(meses, selected) {
+            const container = document.getElementById('timeline');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const createItem = (label, sub, value, isActive, isSpecial) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item' + (isActive ? ' active' : '') + (isSpecial ? ' todas' : '');
+                item.innerHTML = `<span class="mes">${label}</span>` + (sub ? `<span class="anio">${sub}</span>` : '');
+                item.onclick = () => selectDate(value);
+                return item;
+            };
+
+            container.appendChild(createItem('TODAS', '', 'Todas', selected === 'Todas', true));
+
+            meses.forEach(m => {
+                const parts = m.split(' ');
+                container.appendChild(createItem(parts[0], parts[1] || '', m, selected === m, false));
+            });
+
+            // Auto-scroll al seleccionado
+            const active = container.querySelector('.active');
+            if (active) {
+                setTimeout(() => {
+                    active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function selectDate(date) {
+            document.getElementById('selF').value = date;
+            refreshFilters();
+            updateCharts();
+        }
+
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes(tabId)));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'tab-' + tabId));
+
+            document.getElementById('group-estado').style.display = 'none';
+            document.getElementById('group-rubro').style.display = (tabId === 'rubro') ? 'block' : 'none';
+            document.getElementById('group-acuerdo').style.display = (tabId === 'rubro') ? 'block' : 'none';
+
+            // Ocultar Casa Encuestadora en Revocación ya que solo hay una
+            const groupEnc = document.getElementById('selC').parentElement;
+            groupEnc.style.display = (tabId === 'revocacion') ? 'none' : 'block';
+
+            refreshFilters();
+            updateCharts();
+        }
+
+        function populate(id, items, all, currentSelection) {
             const s = document.getElementById(id);
-            s.innerHTML = ""; // Limpiar antes de poblar
+            const prevVal = currentSelection || s.value;
+            s.innerHTML = "";
             if (all) s.add(new Option("--- TODAS ---", "Todas"));
             items.forEach(i => s.add(new Option(i, i)));
+
+            // Intentar mantener la seleccion previa si sigue siendo válida
+            if ([...s.options].some(o => o.value === prevVal)) {
+                s.value = prevVal;
+            } else if (s.options.length > 0) {
+                // Si no, seleccionar la primera disponible (o 'Todas' si existe)
+                s.selectedIndex = 0;
+            }
         }
 
         function updateCharts() {
             const e = document.getElementById('selE').value;
             const c = document.getElementById('selC').value;
             const f = document.getElementById('selF').value;
+            const r = document.getElementById('selR').value;
+            const a = document.getElementById('selA').value;
 
-            console.log("Filtros:", { e, c, f });
+            if (currentTab === 'general') {
+                updateGeneralTab(e, c, f);
+            } else if (currentTab === 'rubro') {
+                updateRubroTab(e, c, f, r, a);
+            } else if (currentTab === 'comparativo') {
+                updateComparativoTab(c, f);
+            } else if (currentTab === 'revocacion') {
+                updateRevocacionTab(f);
+            }
+        }
 
+        function updateRevocacionTab(f) {
+            // 1. Datos de Arias (Aprobación General)
+            const dArias = rawData.filter(d => d.Estado === "Hidalgo" && d.Encuesta === "Arias");
+
+            // 2. Datos de Revocación (Hidalgo)
+            const dRev = revData.filter(d => d.Estado === "Hidalgo");
+
+            // 3. Unir datos para el Histórico
+            const todosMeses = [...new Set([...dArias.map(d => d.Mes), ...dRev.map(d => d.Mes)])]
+                .sort((a, b) => parseMes(a) - parseMes(b));
+
+            const labels = [];
+            const dataSiga = [];
+            const dataRevoca = [];
+            const dataAprobArias = [];
+
+            todosMeses.forEach(m => {
+                const r = dRev.find(d => d.Mes === m);
+                const a = dArias.find(d => d.Mes === m);
+                if (r || a) {
+                    labels.push(m);
+                    dataSiga.push(r ? r.Siga.toFixed(1) : null);
+                    dataRevoca.push(r ? r.Revoca.toFixed(1) : null);
+                    dataAprobArias.push(a ? a.Val.toFixed(1) : null);
+                }
+            });
+
+            // 4. Actualizar Métricas (Mes seleccionado o Último disponible)
+            let selMes = f;
+            if (selMes === "Todas") selMes = labels[labels.length - 1];
+
+            const currentRev = dRev.find(d => d.Mes === selMes);
+            const currentArias = dArias.find(d => d.Mes === selMes);
+
+            document.getElementById('rev-siga').innerText = currentRev ? currentRev.Siga.toFixed(1) + '%' : '--%';
+            document.getElementById('rev-revoca').innerText = currentRev ? currentRev.Revoca.toFixed(1) + '%' : '--%';
+            document.getElementById('rev-aprob-arias').innerText = currentArias ? currentArias.Val.toFixed(1) + '%' : '--%';
+
+            // 5. Renderizar Gráfico Histórico
+            render('chRevHistory', 'line', {
+                labels: labels,
+                datasets: [
+                    { label: 'Que Siga', data: dataSiga, color: '#27ae60', border: 4 },
+                    { label: 'Revocar', data: dataRevoca, color: '#e74c3c', border: 4 },
+                    { label: 'Aprobación (Arias)', data: dataAprobArias, color: '#95a5a6', border: 2, dashed: [5, 5] }
+                ]
+            }, 'x', null);
+        }
+
+        function updateGeneralTab(e, c, f) {
             // --- CÁLCULO DE MÉTRICAS RESUMEN ---
-            let dSummary = rawData.filter(d => d.Estado === "Hidalgo");
+            let dSummary = rawData.filter(d => d.Estado === "Hidalgo" && d.Val > 0);
             if (f !== "Todas") dSummary = dSummary.filter(d => d.Mes === f);
             if (c !== "Todas") dSummary = dSummary.filter(d => d.Encuesta === c);
 
             if (dSummary.length) {
                 const vals = dSummary.map(d => d.Val);
-                const avg = (vals.reduce((a, b) => a + b, 0) / vals.length) * 100;
+                const avg = (vals.reduce((a, b) => a + b, 0) / vals.length);
                 const maxObj = dSummary.reduce((prev, curr) => (prev.Val > curr.Val) ? prev : curr);
                 const minObj = dSummary.reduce((prev, curr) => (prev.Val < curr.Val) ? prev : curr);
 
                 document.getElementById('m-avg').innerText = avg.toFixed(1) + '%';
                 document.getElementById('m-period').innerText = f === 'Todas' ? 'Todo el periodo' : f;
-                document.getElementById('m-max').innerText = (maxObj.Val * 100).toFixed(1) + '%';
+                document.getElementById('m-max').innerText = maxObj.Val.toFixed(1) + '%';
                 document.getElementById('m-max-e').innerText = maxObj.Encuesta;
-                document.getElementById('m-min').innerText = (minObj.Val * 100).toFixed(1) + '%';
+                document.getElementById('m-min').innerText = minObj.Val.toFixed(1) + '%';
                 document.getElementById('m-min-e').innerText = minObj.Encuesta;
             } else {
                 ['m-avg', 'm-max', 'm-min'].forEach(id => document.getElementById(id).innerText = '-- %');
                 ['m-max-e', 'm-min-e'].forEach(id => document.getElementById(id).innerText = '--');
             }
 
-            // --- LÓGICA DE FILTRADO Y PROCESO ---
             const process = (data, key) => {
                 const m = new Map();
                 data.forEach(d => {
@@ -368,16 +855,15 @@
                 });
                 return Array.from(m.keys()).map(k => ({
                     label: k,
-                    val: parseFloat(((m.get(k).sum / m.get(k).count) * 100).toFixed(1))
+                    val: parseFloat((m.get(k).sum / m.get(k).count).toFixed(1))
                 }));
             };
 
-            // 1. Histórico (Líneas + Máx/Mín/Promedio)
-            let dH = rawData.filter(d => d.Estado === e);
+            // 1. Histórico
+            let dH = rawData.filter(d => d.Estado === "Hidalgo");
             if (c !== "Todas") dH = dH.filter(d => d.Encuesta === c);
             const dataH = process(dH.sort((a, b) => parseMes(a.Mes) - parseMes(b.Mes)), 'Mes');
 
-            // Calcular Máximos y Mínimos por mes a nivel nacional
             const mesesDisponibles = dataH.map(x => x.label);
             const dataMax = [];
             const dataMin = [];
@@ -385,7 +871,6 @@
             mesesDisponibles.forEach(mes => {
                 let dMes = rawData.filter(d => d.Mes === mes);
                 if (c !== "Todas") dMes = dMes.filter(d => d.Encuesta === c);
-
                 const stats = process(dMes, 'Estado');
                 if (stats.length) {
                     const vals = stats.map(s => s.val);
@@ -397,54 +882,207 @@
                 }
             });
 
-            console.log("Datos Histórico:", dataH.length);
             render('chH', 'line', {
                 labels: mesesDisponibles,
                 datasets: [
-                    { label: 'Hidalgo', data: dataH.map(x => x.val), color: '#47000f', border: 4 },
-                    { label: 'Máximo Nacional', data: dataMax, color: '#27ae60', border: 2, dashed: [5, 5] },
-                    { label: 'Mínimo Nacional', data: dataMin, color: '#e74c3c', border: 2, dashed: [5, 5] }
+                    { label: 'Hidalgo', data: dataH.map(x => x.val || null), color: '#47000f', border: 4 },
+                    { label: 'Máximo Nacional', data: dataMax.map(v => v || null), color: '#27ae60', border: 2, dashed: [5, 5] },
+                    { label: 'Mínimo Nacional', data: dataMin.map(v => v || null), color: '#e74c3c', border: 2, dashed: [5, 5] }
                 ]
             }, 'x', 'badgeH');
 
-            // 2. Ranking (Barras Horizontales con Posición)
+            // 2. Ranking Nacional
             let dR = rawData;
             if (f !== "Todas") dR = dR.filter(d => d.Mes === f);
             if (c !== "Todas") dR = dR.filter(d => d.Encuesta === c);
             const dataR = process(dR, 'Estado').sort((a, b) => b.val - a.val);
-            console.log("Datos Ranking:", dataR.length);
             render('chR', 'bar', {
                 labels: dataR.map((x, i) => `${i + 1}. ${x.label}`),
                 datasets: [{ data: dataR.map(x => x.val), color: '#2ecc71' }]
             }, 'y', 'badgeR');
 
-            // 3. Comparativa (Barras)
-            let dC = rawData.filter(d => d.Estado === e);
+            // 3. Por Casa Encuestadora
+            let dC = rawData.filter(d => d.Estado === "Hidalgo");
             if (f !== "Todas") dC = dC.filter(d => d.Mes === f);
             const dataC = process(dC, 'Encuesta').sort((a, b) => b.val - a.val);
-            console.log("Datos Comparativa:", dataC.length);
             render('chC', 'bar', {
                 labels: dataC.map(x => x.label),
                 datasets: [{ data: dataC.map(x => x.val), color: '#9b59b6' }]
-            }, 'x', 'badgeC');
+            }, 'x', 'badgeC', c);
         }
 
-        function render(id, type, data, axis, badgeId) {
-            const datasets = data.datasets;
-            const labels = data.labels;
+        function updateRubroTab(e, c, f, r, a) {
+            let dR = rubroData.filter(d => d.Estado === "Hidalgo");
+            if (f !== "Todas") dR = dR.filter(d => d.Mes === f);
+            if (c !== "Todas") dR = dR.filter(d => d.Encuesta === c);
+            if (a !== "Todas") dR = dR.filter(d => (d.Acuerdo_PED || d['Acuerdo PED']) === a);
 
-            // El promedio se calcula sobre el primer dataset (el principal)
-            const mainValues = datasets[0].data;
-            const avg = mainValues.length ? (mainValues.reduce((a, b) => a + (parseFloat(b) || 0), 0) / mainValues.length).toFixed(1) : 0;
-            document.getElementById(badgeId).innerText = `Promedio: ${avg}%`;
+            // 1. Radar Chart: Todos los rubros para Hidalgo
+            const rubrosMap = new Map();
+            dR.forEach(d => {
+                if (!rubrosMap.has(d.Rubros)) rubrosMap.set(d.Rubros, { sum: 0, count: 0 });
+                rubrosMap.get(d.Rubros).sum += d.Val;
+                rubrosMap.get(d.Rubros).count++;
+            });
+            const labelsRadar = Array.from(rubrosMap.keys());
+            const dataRadar = labelsRadar.map(l => (rubrosMap.get(l).sum / rubrosMap.get(l).count).toFixed(1));
+            renderRadar('chRadar', {
+                labels: labelsRadar,
+                datasets: [{ label: "Hidalgo", data: dataRadar, color: '#3498db' }]
+            });
+
+            // 2. Radar Chart: Acuerdos PED
+            const acuerdosMap = new Map();
+            dR.forEach(d => {
+                const ac = d.Acuerdo_PED || d['Acuerdo PED'];
+                if (ac) {
+                    if (!acuerdosMap.has(ac)) acuerdosMap.set(ac, { sum: 0, count: 0 });
+                    acuerdosMap.get(ac).sum += d.Val;
+                    acuerdosMap.get(ac).count++;
+                }
+            });
+            const labelsAcuerdos = Array.from(acuerdosMap.keys());
+            const dataAcuerdos = labelsAcuerdos.map(l => (acuerdosMap.get(l).sum / acuerdosMap.get(l).count).toFixed(1));
+            renderRadar('chRadarAcuerdos', {
+                labels: labelsAcuerdos,
+                datasets: [{ label: "Acuerdos PED", data: dataAcuerdos, color: '#9b59b6' }]
+            });
+
+            // 3. Rubro History Chart
+            let dHist = rubroData.filter(d => d.Estado === "Hidalgo" && d.Rubros === r);
+            if (c !== "Todas") dHist = dHist.filter(d => d.Encuesta === c);
+
+            const histMap = new Map();
+            dHist.forEach(d => {
+                if (!histMap.has(d.Mes)) histMap.set(d.Mes, { sum: 0, count: 0 });
+                histMap.get(d.Mes).sum += d.Val;
+                histMap.get(d.Mes).count++;
+            });
+            const sortedMeses = Array.from(histMap.keys()).sort((a, b) => parseMes(a) - parseMes(b));
+            const dataHist = sortedMeses.map(m => (histMap.get(m).sum / histMap.get(m).count).toFixed(1));
+
+            document.getElementById('txtRubroHistory').innerText = r;
+            render('chRubroHistory', 'line', {
+                labels: sortedMeses,
+                datasets: [{ label: r, data: dataHist, color: '#2c3e50', border: 3 }]
+            }, 'x', null);
+
+            // 4. Ranking por Rubro
+            let dRank = rubroData.filter(d => d.Rubros === r);
+            if (f !== "Todas") dRank = dRank.filter(d => d.Mes === f);
+            if (c !== "Todas") dRank = dRank.filter(d => d.Encuesta === c);
+
+            const rankMap = new Map();
+            dRank.forEach(d => {
+                if (!rankMap.has(d.Estado)) rankMap.set(d.Estado, { sum: 0, count: 0 });
+                rankMap.get(d.Estado).sum += d.Val;
+                rankMap.get(d.Estado).count++;
+            });
+
+            const dataRank = Array.from(rankMap.keys()).map(k => ({
+                label: k,
+                val: parseFloat((rankMap.get(k).sum / rankMap.get(k).count).toFixed(1))
+            })).sort((a, b) => b.val - a.val);
+
+            document.getElementById('txtRubro').innerText = r;
+            render('chRubroRank', 'bar', {
+                labels: dataRank.map((d, i) => `${i + 1}. ${d.label}`),
+                datasets: [{ data: dataRank.map(d => d.val), color: '#e67e22' }]
+            }, 'y', null, "Hidalgo");
+        }
+
+        function updateComparativoTab(c, f) {
+            const stateA = document.getElementById('selCompA').value;
+            const stateB = document.getElementById('selCompB').value;
+
+            const processState = (state) => {
+                let ds = rubroData;
+                if (state !== "Promedio Nacional") {
+                    ds = ds.filter(d => d.Estado === state);
+                }
+                if (f !== "Todas") ds = ds.filter(d => d.Mes === f);
+                if (c !== "Todas") ds = ds.filter(d => d.Encuesta === c);
+
+                const m = new Map();
+                ds.forEach(d => {
+                    if (!m.has(d.Rubros)) m.set(d.Rubros, { sum: 0, count: 0 });
+                    m.get(d.Rubros).sum += d.Val;
+                    m.get(d.Rubros).count++;
+                });
+                return m;
+            };
+
+            const mapA = processState(stateA);
+            const mapB = processState(stateB);
+            const allRubros = [...new Set([...mapA.keys(), ...mapB.keys()])].sort();
+
+            const dataA = allRubros.map(r => mapA.has(r) ? (mapA.get(r).sum / mapA.get(r).count).toFixed(1) : 0);
+            const dataB = allRubros.map(r => mapB.has(r) ? (mapB.get(r).sum / mapB.get(r).count).toFixed(1) : 0);
+
+            render('chComp', 'bar', {
+                labels: allRubros,
+                datasets: [
+                    { label: stateA, data: dataA, color: '#3498db' },
+                    { label: stateB, data: dataB, color: '#e74c3c' }
+                ]
+            }, 'y', null);
+        }
+
+        function renderRadar(id, data) {
+            if (charts[id]) charts[id].destroy();
+            const ctx = document.getElementById(id).getContext('2d');
+            charts[id] = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets.map(ds => ({
+                        label: ds.label,
+                        data: ds.data,
+                        backgroundColor: ds.color + '44', // Opacity
+                        borderColor: ds.color,
+                        pointBackgroundColor: ds.color
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: { beginAtZero: true, max: 100, ticks: { stepSize: 20 } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+        }
+
+        function render(id, type, data, axis, badgeId, highlight = null) {
+            const datasets = data.datasets || [];
+            const labels = data.labels || [];
+
+            if (datasets.length === 0) {
+                console.warn("Llamada a render sin datasets:", id);
+                if (charts[id]) charts[id].destroy();
+                return;
+            }
+
+            let avg = 0;
+            if (badgeId || id === 'chH' || id === 'chR' || id === 'chC' || id === 'chRubroRank') {
+                const firstDs = datasets[0].data || [];
+                const mainValues = firstDs.filter(v => v !== null && v !== 0);
+                avg = mainValues.length ? (mainValues.reduce((a, b) => a + (parseFloat(b) || 0), 0) / mainValues.length) : 0;
+            }
+
+            if (badgeId) {
+                document.getElementById(badgeId).innerText = `Promedio: ${avg.toFixed(1)}%`;
+            }
 
             if (charts[id]) charts[id].destroy();
 
             const ctx = document.getElementById(id);
 
             // AJUSTE CRÍTICO: El Ranking debe tener altura suficiente para todos los estados
-            if (id === 'chR') {
-                ctx.parentElement.style.height = (labels.length * 35) + "px";
+            if (id === 'chR' || id === 'chRubroRank') {
+                const target = document.getElementById(id + '-container') || ctx.parentElement;
+                target.style.height = (labels.length * 35) + "px";
             }
 
             charts[id] = new Chart(ctx.getContext('2d'), {
@@ -454,7 +1092,14 @@
                     datasets: datasets.map(ds => ({
                         label: ds.label || '',
                         data: ds.data,
-                        backgroundColor: id === 'chR' ? ds.data.map(val => (val > 50 ? '#27ae60' : '#e74c3c')) : ds.color,
+                        backgroundColor: (id === 'chR' || id === 'chRubroRank')
+                            ? labels.map((label, idx) => {
+                                if (highlight && label.includes(highlight)) return '#3498db'; // Azul para el resaltado
+                                return ds.data[idx] > 50 ? '#27ae60' : '#e74c3c';
+                            })
+                            : (id === 'chC' && highlight && highlight !== "Todas")
+                                ? labels.map(label => label === highlight ? '#3498db' : '#bdc3c7')
+                                : ds.color,
                         borderColor: ds.color,
                         borderWidth: ds.border || 2,
                         borderDash: ds.dashed || [],
@@ -468,7 +1113,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: id === 'chH', position: 'top' },
+                        legend: { display: id === 'chH' || id === 'chComp', position: 'top' },
                         annotation: {
                             annotations: {
                                 line1: {
@@ -476,7 +1121,12 @@
                                     [axis === 'y' ? 'xMin' : 'yMin']: avg,
                                     [axis === 'y' ? 'xMax' : 'yMax']: avg,
                                     borderColor: '#333', borderDash: [2, 2], borderWidth: 2,
-                                    label: { display: true, content: 'Promedio: ' + avg + '%', position: 'end', backgroundColor: 'rgba(0,0,0,0.8)' }
+                                    label: {
+                                        display: (id !== 'chH' && id !== 'chComp' && avg > 0),
+                                        content: 'Promedio: ' + avg.toFixed(1) + '%',
+                                        position: 'end',
+                                        backgroundColor: 'rgba(0,0,0,0.8)'
+                                    }
                                 }
                             }
                         }
@@ -484,10 +1134,10 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: axis === 'x' ? 100 : undefined,
+                            max: (axis === 'x' && type !== 'radar') ? 100 : undefined,
                             ticks: {
                                 font: function (context) {
-                                    if (id === 'chR' && context.tick && labels[context.index] && labels[context.index].includes('Hidalgo')) {
+                                    if ((id === 'chR' || id === 'chRubroRank') && context.tick && labels[context.index] && labels[context.index].includes('Hidalgo')) {
                                         return { weight: 'bold', family: 'Montserrat' };
                                     }
                                     return { family: 'Montserrat' };
@@ -495,7 +1145,7 @@
                             }
                         },
                         x: {
-                            max: axis === 'y' ? 100 : undefined,
+                            max: (axis === 'y' && type !== 'radar') ? 100 : undefined,
                             ticks: {
                                 font: { family: 'Montserrat' }
                             }

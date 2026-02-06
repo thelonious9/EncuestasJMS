@@ -1,0 +1,1121 @@
+﻿Mes,Posición,Gobernador(a),Estado,Que Siga (%),Revocar (%)
+ene 2023,1,Julio Menchaca,Hidalgo,0.761,0.239
+ene 2023,2,Tere Jiménez,Aguascalientes,0.67,0.33
+ene 2023,3,Miguel Ángel Navarro,Nayarit,0.645,0.355
+ene 2023,4,Américo Villarreal,Tamaulipas,0.63,0.37
+ene 2023,5,Rubén Rocha Moya,Sinaloa,0.625,0.375
+ene 2023,6,Evelyn Salgado,Guerrero,0.584,0.416
+ene 2023,7,Salomón Jara,Oaxaca,0.583,0.417
+ene 2023,8,Samuel García,Nuevo León,0.579,0.421
+ene 2023,9,Ricardo Gallardo,San Luis Potosí,0.577,0.423
+ene 2023,10,Clara Brugada,CDMX,0.566,0.434
+ene 2023,11,Alfonso Durazo,Sonora,0.564,0.436
+ene 2023,12,Alejandro Armenta,Puebla,0.483,0.517
+ene 2023,13,Joaquín Díaz Mena,Yucatán,0.483,0.517
+ene 2023,14,Esteban Villegas,Durango,0.455,0.545
+ene 2023,15,Margarita González Saravia,Morelos,0.448,0.552
+ene 2023,16,Marina del Pilar Ávila,Baja California,0.438,0.562
+ene 2023,17,Pablo Lemus,Jalisco,0.413,0.587
+ene 2023,18,Mara Lezama,Quintana Roo,0.411,0.589
+ene 2023,19,Dennise García Muñoz Ledo,Guanajuato,0.406,0.594
+ene 2023,20,Layda Sansores,Campeche,0.405,0.595
+ene 2023,21,Lorena Cuéllar,Tlaxcala,0.403,0.597
+ene 2023,22,Mauricio Kuri,Querétaro,0.377,0.623
+ene 2023,23,Indira Vizcaíno,Colima,0.375,0.625
+ene 2023,24,Delfina Gómez,Estado de México,0.36,0.64
+ene 2023,25,Eduardo Ramírez,Chiapas,0.322,0.678
+ene 2023,26,Alfredo Ramírez Bedolla,Michoacán,0.311,0.689
+ene 2023,27,Víctor Manuel Castro,Baja California Sur,0.3,0.7
+ene 2023,28,Rocío Nahle,Veracruz,0.292,0.708
+ene 2023,29,Javier May,Tabasco,0.28,0.72
+ene 2023,30,Manolo Jiménez Salinas,Coahuila,0.27,0.73
+ene 2023,31,María Eugenia Campos,Chihuahua,0.268,0.732
+ene 2023,32,David Monreal,Zacatecas,0.112,0.888
+feb 2023,1,Julio Menchaca,Hidalgo,0.728,0.272
+feb 2023,2,Alfonso Durazo,Sonora,0.7,0.3
+feb 2023,3,Ricardo Gallardo,San Luis Potosí,0.696,0.304
+feb 2023,4,Joaquín Díaz Mena,Yucatán,0.612,0.388
+feb 2023,5,Rubén Rocha Moya,Sinaloa,0.6,0.4
+feb 2023,6,Clara Brugada,CDMX,0.6,0.4
+feb 2023,7,Américo Villarreal,Tamaulipas,0.579,0.421
+feb 2023,8,Tere Jiménez,Aguascalientes,0.557,0.443
+feb 2023,9,Alejandro Armenta,Puebla,0.555,0.445
+feb 2023,10,Alfredo Ramírez Bedolla,Michoacán,0.514,0.486
+feb 2023,11,Salomón Jara,Oaxaca,0.507,0.493
+feb 2023,12,Miguel Ángel Navarro,Nayarit,0.502,0.498
+feb 2023,13,Esteban Villegas,Durango,0.482,0.518
+feb 2023,14,Pablo Lemus,Jalisco,0.48,0.52
+feb 2023,15,Evelyn Salgado,Guerrero,0.428,0.572
+feb 2023,16,Víctor Manuel Castro,Baja California Sur,0.42,0.58
+feb 2023,17,Marina del Pilar Ávila,Baja California,0.416,0.584
+feb 2023,18,Delfina Gómez,Estado de México,0.409,0.591
+feb 2023,19,Mauricio Kuri,Querétaro,0.389,0.611
+feb 2023,20,Indira Vizcaíno,Colima,0.369,0.631
+feb 2023,21,Samuel García,Nuevo León,0.369,0.631
+feb 2023,22,María Eugenia Campos,Chihuahua,0.357,0.643
+feb 2023,23,Javier May,Tabasco,0.356,0.644
+feb 2023,24,Mara Lezama,Quintana Roo,0.33,0.67
+feb 2023,25,Dennise García Muñoz Ledo,Guanajuato,0.308,0.692
+feb 2023,26,Manolo Jiménez Salinas,Coahuila,0.303,0.697
+feb 2023,27,Layda Sansores,Campeche,0.292,0.708
+feb 2023,28,Rocío Nahle,Veracruz,0.287,0.713
+feb 2023,29,Lorena Cuéllar,Tlaxcala,0.285,0.715
+feb 2023,30,Eduardo Ramírez,Chiapas,0.24,0.76
+feb 2023,31,Margarita González Saravia,Morelos,0.161,0.839
+feb 2023,32,David Monreal,Zacatecas,0.087,0.913
+mar 2023,1,Evelyn Salgado,Guerrero,0.732,0.268
+mar 2023,2,Julio Menchaca,Hidalgo,0.669,0.331
+mar 2023,3,Clara Brugada,CDMX,0.63,0.37
+mar 2023,4,Américo Villarreal,Tamaulipas,0.623,0.377
+mar 2023,5,Ricardo Gallardo,San Luis Potosí,0.604,0.396
+mar 2023,6,Alfonso Durazo,Sonora,0.583,0.417
+mar 2023,7,Tere Jiménez,Aguascalientes,0.581,0.419
+mar 2023,8,Esteban Villegas,Durango,0.577,0.423
+mar 2023,9,Joaquín Díaz Mena,Yucatán,0.547,0.453
+mar 2023,10,Rubén Rocha Moya,Sinaloa,0.534,0.466
+mar 2023,11,Samuel García,Nuevo León,0.5,0.5
+mar 2023,12,Alfredo Ramírez Bedolla,Michoacán,0.498,0.502
+mar 2023,13,Víctor Manuel Castro,Baja California Sur,0.475,0.525
+mar 2023,14,Alejandro Armenta,Puebla,0.446,0.554
+mar 2023,15,Marina del Pilar Ávila,Baja California,0.379,0.621
+mar 2023,16,Delfina Gómez,Estado de México,0.371,0.629
+mar 2023,17,Mauricio Kuri,Querétaro,0.365,0.635
+mar 2023,18,Dennise García Muñoz Ledo,Guanajuato,0.365,0.635
+mar 2023,19,María Eugenia Campos,Chihuahua,0.357,0.643
+mar 2023,20,Salomón Jara,Oaxaca,0.319,0.681
+mar 2023,21,Mara Lezama,Quintana Roo,0.317,0.683
+mar 2023,22,Pablo Lemus,Jalisco,0.314,0.686
+mar 2023,23,Rocío Nahle,Veracruz,0.303,0.697
+mar 2023,24,Eduardo Ramírez,Chiapas,0.299,0.701
+mar 2023,25,Margarita González Saravia,Morelos,0.298,0.702
+mar 2023,26,Layda Sansores,Campeche,0.283,0.717
+mar 2023,27,Javier May,Tabasco,0.251,0.749
+mar 2023,28,Lorena Cuéllar,Tlaxcala,0.246,0.754
+mar 2023,29,Miguel Ángel Navarro,Nayarit,0.241,0.759
+mar 2023,30,Manolo Jiménez Salinas,Coahuila,0.24,0.76
+mar 2023,31,Indira Vizcaíno,Colima,0.227,0.773
+mar 2023,32,David Monreal,Zacatecas,0.134,0.866
+abr 2023,1,Evelyn Salgado,Guerrero,0.733,0.267
+abr 2023,2,Julio Menchaca,Hidalgo,0.646,0.354
+abr 2023,3,Tere Jiménez,Aguascalientes,0.636,0.364
+abr 2023,4,Clara Brugada,CDMX,0.629,0.371
+abr 2023,5,Alfonso Durazo,Sonora,0.624,0.376
+abr 2023,6,Alejandro Armenta,Puebla,0.618,0.382
+abr 2023,7,Ricardo Gallardo,San Luis Potosí,0.61,0.39
+abr 2023,8,Joaquín Díaz Mena,Yucatán,0.581,0.419
+abr 2023,9,Rubén Rocha Moya,Sinaloa,0.578,0.422
+abr 2023,10,Esteban Villegas,Durango,0.553,0.447
+abr 2023,11,Américo Villarreal,Tamaulipas,0.55,0.45
+abr 2023,12,Samuel García,Nuevo León,0.498,0.502
+abr 2023,13,Víctor Manuel Castro,Baja California Sur,0.41,0.59
+abr 2023,14,Mauricio Kuri,Querétaro,0.408,0.592
+abr 2023,15,Alfredo Ramírez Bedolla,Michoacán,0.387,0.613
+abr 2023,16,Delfina Gómez,Estado de México,0.384,0.616
+abr 2023,17,Mara Lezama,Quintana Roo,0.378,0.622
+abr 2023,18,Marina del Pilar Ávila,Baja California,0.373,0.627
+abr 2023,19,María Eugenia Campos,Chihuahua,0.371,0.629
+abr 2023,20,Dennise García Muñoz Ledo,Guanajuato,0.355,0.645
+abr 2023,21,Salomón Jara,Oaxaca,0.35,0.65
+abr 2023,22,Rocío Nahle,Veracruz,0.326,0.674
+abr 2023,23,Miguel Ángel Navarro,Nayarit,0.326,0.674
+abr 2023,24,Lorena Cuéllar,Tlaxcala,0.34,0.66
+abr 2023,25,Layda Sansores,Campeche,0.24,0.76
+abr 2023,26,Javier May,Tabasco,0.226,0.774
+abr 2023,27,Margarita González Saravia,Morelos,0.093,0.907
+abr 2023,28,Manolo Jiménez Salinas,Coahuila,0.24,0.76
+abr 2023,29,Eduardo Ramírez,Chiapas,0.226,0.774
+abr 2023,30,Pablo Lemus,Jalisco,0.093,0.907
+abr 2023,31,Indira Vizcaíno,Colima,0.24,0.76
+abr 2023,32,David Monreal,Zacatecas,0.226,0.774
+may 2023,1,Evelyn Salgado,Guerrero,0.774,0.226
+may 2023,2,Julio Menchaca,Hidalgo,0.772,0.228
+may 2023,3,Alejandro Armenta,Puebla,0.731,0.269
+may 2023,4,Tere Jiménez,Aguascalientes,0.642,0.358
+may 2023,5,Alfonso Durazo,Sonora,0.611,0.389
+may 2023,6,Clara Brugada,CDMX,0.605,0.395
+may 2023,7,Joaquín Díaz Mena,Yucatán,0.593,0.407
+may 2023,8,Américo Villarreal,Tamaulipas,0.576,0.424
+may 2023,9,Esteban Villegas,Durango,0.551,0.449
+may 2023,10,Rubén Rocha Moya,Sinaloa,0.5,0.5
+may 2023,11,Víctor Manuel Castro,Baja California Sur,0.496,0.504
+may 2023,12,Samuel García,Nuevo León,0.453,0.547
+may 2023,13,Alfredo Ramírez Bedolla,Michoacán,0.434,0.566
+may 2023,14,Ricardo Gallardo,San Luis Potosí,0.432,0.568
+may 2023,15,Dennise García Muñoz Ledo,Guanajuato,0.407,0.593
+may 2023,16,Delfina Gómez,Estado de México,0.401,0.599
+may 2023,17,Mara Lezama,Quintana Roo,0.383,0.617
+may 2023,18,Mauricio Kuri,Querétaro,0.382,0.618
+may 2023,19,Lorena Cuéllar,Tlaxcala,0.381,0.619
+may 2023,20,María Eugenia Campos,Chihuahua,0.351,0.649
+may 2023,21,Marina del Pilar Ávila,Baja California,0.34,0.66
+may 2023,22,Rocío Nahle,Veracruz,0.315,0.685
+may 2023,23,Manolo Jiménez Salinas,Coahuila,0.307,0.693
+may 2023,24,Miguel Ángel Navarro,Nayarit,0.269,0.731
+may 2023,25,Margarita González Saravia,Morelos,0.256,0.744
+may 2023,26,Pablo Lemus,Jalisco,0.239,0.761
+may 2023,27,Salomón Jara,Oaxaca,0.238,0.762
+may 2023,28,Javier May,Tabasco,0.233,0.767
+may 2023,29,Indira Vizcaíno,Colima,0.231,0.769
+may 2023,30,Eduardo Ramírez,Chiapas,0.231,0.769
+may 2023,31,Layda Sansores,Campeche,0.177,0.823
+may 2023,32,David Monreal,Zacatecas,0.123,0.877
+jun 2023,1,Julio Menchaca,Hidalgo,0.787,0.213
+jun 2023,2,Evelyn Salgado,Guerrero,0.752,0.248
+jun 2023,3,Alfonso Durazo,Sonora,0.625,0.375
+jun 2023,4,Tere Jiménez,Aguascalientes,0.617,0.383
+jun 2023,5,Alejandro Armenta,Puebla,0.595,0.405
+jun 2023,6,Clara Brugada,CDMX,0.576,0.424
+jun 2023,7,Américo Villarreal,Tamaulipas,0.544,0.456
+jun 2023,8,Joaquín Díaz Mena,Yucatán,0.544,0.456
+jun 2023,9,Rubén Rocha Moya,Sinaloa,0.54,0.46
+jun 2023,10,Ricardo Gallardo,San Luis Potosí,0.508,0.492
+jun 2023,11,Mauricio Kuri,Querétaro,0.499,0.501
+jun 2023,12,Miguel Ángel Navarro,Nayarit,0.396,0.604
+jun 2023,13,Marina del Pilar Ávila,Baja California,0.387,0.613
+jun 2023,14,Samuel García,Nuevo León,0.387,0.613
+jun 2023,15,Víctor Manuel Castro,Baja California Sur,0.386,0.614
+jun 2023,16,Esteban Villegas,Durango,0.386,0.614
+jun 2023,17,Dennise García Muñoz Ledo,Guanajuato,0.369,0.631
+jun 2023,18,Javier May,Tabasco,0.367,0.633
+jun 2023,19,Pablo Lemus,Jalisco,0.354,0.646
+jun 2023,20,Delfina Gómez,Estado de México,0.352,0.648
+jun 2023,21,Mara Lezama,Quintana Roo,0.341,0.659
+jun 2023,22,Manolo Jiménez Salinas,Coahuila,0.34,0.66
+jun 2023,23,María Eugenia Campos,Chihuahua,0.331,0.669
+jun 2023,24,Margarita González Saravia,Morelos,0.329,0.671
+jun 2023,25,Alfredo Ramírez Bedolla,Michoacán,0.315,0.685
+jun 2023,26,Indira Vizcaíno,Colima,0.31,0.69
+jun 2023,27,Rocío Nahle,Veracruz,0.284,0.716
+jun 2023,28,Eduardo Ramírez,Chiapas,0.236,0.764
+jun 2023,29,Lorena Cuéllar,Tlaxcala,0.234,0.766
+jun 2023,30,Layda Sansores,Campeche,0.233,0.767
+jun 2023,31,Salomón Jara,Oaxaca,0.212,0.788
+jun 2023,32,David Monreal,Zacatecas,0.077,0.923
+jul 2023,1,Julio Menchaca,Hidalgo,0.826,0.174
+jul 2023,2,Evelyn Salgado,Guerrero,0.798,0.202
+jul 2023,3,Rubén Rocha Moya,Sinaloa,0.619,0.381
+jul 2023,4,Joaquín Díaz Mena,Yucatán,0.616,0.384
+jul 2023,5,Alejandro Armenta,Puebla,0.607,0.393
+jul 2023,6,Tere Jiménez,Aguascalientes,0.59,0.41
+jul 2023,7,Clara Brugada,CDMX,0.571,0.429
+jul 2023,8,Alfonso Durazo,Sonora,0.567,0.433
+jul 2023,9,Américo Villarreal,Tamaulipas,0.531,0.469
+jul 2023,10,Ricardo Gallardo,San Luis Potosí,0.459,0.541
+jul 2023,11,Mara Lezama,Quintana Roo,0.439,0.561
+jul 2023,12,Samuel García,Nuevo León,0.436,0.564
+jul 2023,13,Miguel Ángel Navarro,Nayarit,0.42,0.58
+jul 2023,14,Esteban Villegas,Durango,0.415,0.585
+jul 2023,15,Víctor Manuel Castro,Baja California Sur,0.411,0.589
+jul 2023,16,Marina del Pilar Ávila,Baja California,0.4,0.6
+jul 2023,17,Delfina Gómez,Estado de México,0.39,0.61
+jul 2023,18,Dennise García Muñoz Ledo,Guanajuato,0.386,0.614
+jul 2023,19,María Eugenia Campos,Chihuahua,0.373,0.627
+jul 2023,20,Manolo Jiménez Salinas,Coahuila,0.371,0.629
+jul 2023,21,Mauricio Kuri,Querétaro,0.362,0.638
+jul 2023,22,Pablo Lemus,Jalisco,0.34,0.66
+jul 2023,23,Layda Sansores,Campeche,0.321,0.679
+jul 2023,24,Javier May,Tabasco,0.311,0.689
+jul 2023,25,Eduardo Ramírez,Chiapas,0.288,0.712
+jul 2023,26,Salomón Jara,Oaxaca,0.278,0.722
+jul 2023,27,Alfredo Ramírez Bedolla,Michoacán,0.275,0.725
+jul 2023,28,Margarita González Saravia,Morelos,0.253,0.747
+jul 2023,29,Rocío Nahle,Veracruz,0.228,0.772
+jul 2023,30,Indira Vizcaíno,Colima,0.227,0.773
+jul 2023,31,Lorena Cuéllar,Tlaxcala,0.218,0.782
+jul 2023,32,David Monreal,Zacatecas,0.162,0.838
+ago 2023,1,Julio Menchaca,Hidalgo,0.838,0.162
+ago 2023,2,Evelyn Salgado,Guerrero,0.832,0.168
+ago 2023,3,Joaquín Díaz Mena,Yucatán,0.712,0.288
+ago 2023,4,Rubén Rocha Moya,Sinaloa,0.626,0.374
+ago 2023,5,Alejandro Armenta,Puebla,0.593,0.407
+ago 2023,6,Alfonso Durazo,Sonora,0.585,0.415
+ago 2023,7,Clara Brugada,CDMX,0.576,0.424
+ago 2023,8,Tere Jiménez,Aguascalientes,0.571,0.429
+ago 2023,9,Ricardo Gallardo,San Luis Potosí,0.571,0.429
+ago 2023,10,Américo Villarreal,Tamaulipas,0.554,0.446
+ago 2023,11,Esteban Villegas,Durango,0.505,0.495
+ago 2023,12,Mauricio Kuri,Querétaro,0.499,0.501
+ago 2023,13,Mara Lezama,Quintana Roo,0.48,0.52
+ago 2023,14,Miguel Ángel Navarro,Nayarit,0.457,0.543
+ago 2023,15,Samuel García,Nuevo León,0.441,0.559
+ago 2023,16,Marina del Pilar Ávila,Baja California,0.426,0.574
+ago 2023,17,Dennise García Muñoz Ledo,Guanajuato,0.418,0.582
+ago 2023,18,Víctor Manuel Castro,Baja California Sur,0.41,0.59
+ago 2023,19,María Eugenia Campos,Chihuahua,0.399,0.601
+ago 2023,20,Pablo Lemus,Jalisco,0.397,0.603
+ago 2023,21,Delfina Gómez,Estado de México,0.391,0.609
+ago 2023,22,Manolo Jiménez Salinas,Coahuila,0.356,0.644
+ago 2023,23,Salomón Jara,Oaxaca,0.347,0.653
+ago 2023,24,Margarita González Saravia,Morelos,0.329,0.671
+ago 2023,25,Eduardo Ramírez,Chiapas,0.311,0.689
+ago 2023,26,Alfredo Ramírez Bedolla,Michoacán,0.3,0.7
+ago 2023,27,Javier May,Tabasco,0.287,0.713
+ago 2023,28,Layda Sansores,Campeche,0.275,0.725
+ago 2023,29,Rocío Nahle,Veracruz,0.258,0.742
+ago 2023,30,Indira Vizcaíno,Colima,0.246,0.754
+ago 2023,31,Lorena Cuéllar,Tlaxcala,0.181,0.819
+ago 2023,32,David Monreal,Zacatecas,0.098,0.902
+sep 2023,1,Julio Menchaca,Hidalgo,0.808,0.192
+sep 2023,2,Evelyn Salgado,Guerrero,0.746,0.254
+sep 2023,3,Ricardo Gallardo,San Luis Potosí,0.653,0.347
+sep 2023,4,Tere Jiménez,Aguascalientes,0.639,0.361
+sep 2023,5,Joaquín Díaz Mena,Yucatán,0.629,0.371
+sep 2023,6,Clara Brugada,CDMX,0.618,0.382
+sep 2023,7,Rubén Rocha Moya,Sinaloa,0.595,0.405
+sep 2023,8,Esteban Villegas,Durango,0.573,0.427
+sep 2023,9,Alejandro Armenta,Puebla,0.567,0.433
+sep 2023,10,Dennise García Muñoz Ledo,Guanajuato,0.544,0.456
+sep 2023,11,Alfonso Durazo,Sonora,0.544,0.456
+sep 2023,12,Javier May,Tabasco,0.491,0.509
+sep 2023,13,Américo Villarreal,Tamaulipas,0.49,0.51
+sep 2023,14,Samuel García,Nuevo León,0.488,0.512
+sep 2023,15,Mara Lezama,Quintana Roo,0.487,0.513
+sep 2023,16,Mauricio Kuri,Querétaro,0.463,0.537
+sep 2023,17,Marina del Pilar Ávila,Baja California,0.452,0.548
+sep 2023,18,Miguel Ángel Navarro,Nayarit,0.406,0.594
+sep 2023,19,Delfina Gómez,Estado de México,0.364,0.636
+sep 2023,20,María Eugenia Campos,Chihuahua,0.354,0.646
+sep 2023,21,Pablo Lemus,Jalisco,0.334,0.666
+sep 2023,22,Víctor Manuel Castro,Baja California Sur,0.331,0.669
+sep 2023,23,Manolo Jiménez Salinas,Coahuila,0.33,0.67
+sep 2023,24,Margarita González Saravia,Morelos,0.325,0.675
+sep 2023,25,Layda Sansores,Campeche,0.305,0.695
+sep 2023,26,Alfredo Ramírez Bedolla,Michoacán,0.301,0.699
+sep 2023,27,Rocío Nahle,Veracruz,0.269,0.731
+sep 2023,28,Salomón Jara,Oaxaca,0.251,0.749
+sep 2023,29,Eduardo Ramírez,Chiapas,0.247,0.753
+sep 2023,30,Lorena Cuéllar,Tlaxcala,0.213,0.787
+sep 2023,31,Indira Vizcaíno,Colima,0.189,0.811
+sep 2023,32,David Monreal,Zacatecas,0.095,0.905
+oct 2023,1,Ricardo Gallardo,San Luis Potosí,0.763,0.237
+oct 2023,2,Evelyn Salgado,Guerrero,0.756,0.244
+oct 2023,3,Julio Menchaca,Hidalgo,0.752,0.248
+oct 2023,4,Alejandro Armenta,Puebla,0.671,0.329
+oct 2023,5,Joaquín Díaz Mena,Yucatán,0.658,0.342
+oct 2023,6,Tere Jiménez,Aguascalientes,0.65,0.35
+oct 2023,7,Sin datos,Ciudad de México,0.622,0.378
+oct 2023,8,Américo Villarreal,Tamaulipas,0.606,0.394
+oct 2023,9,Delfina Gómez,Estado de México,0.601,0.399
+oct 2023,10,Esteban Villegas,Durango,0.585,0.415
+oct 2023,11,Rubén Rocha Moya,Sinaloa,0.584,0.416
+oct 2023,12,Miguel Ángel Navarro,Nayarit,0.546,0.454
+oct 2023,13,Alfonso Durazo,Sonora,0.478,0.522
+oct 2023,14,Indira Vizcaíno,Colima,0.457,0.543
+oct 2023,15,Dennise García Muñoz Ledo,Guanajuato,0.436,0.564
+oct 2023,16,Marina del Pilar Ávila,Baja California,0.436,0.564
+oct 2023,17,Mara Lezama,Quintana Roo,0.432,0.568
+oct 2023,18,Samuel García,Nuevo León,0.406,0.594
+oct 2023,19,Alfredo Ramírez Bedolla,Michoacán,0.36,0.64
+oct 2023,20,Mauricio Kuri,Querétaro,0.355,0.645
+oct 2023,21,Manolo Jiménez Salinas,Coahuila,0.342,0.658
+oct 2023,22,María Eugenia Campos,Chihuahua,0.342,0.658
+oct 2023,23,Salomón Jara,Oaxaca,0.322,0.678
+oct 2023,24,Javier May,Tabasco,0.318,0.682
+oct 2023,25,Margarita González Saravia,Morelos,0.3,0.7
+oct 2023,26,Eduardo Ramírez,Chiapas,0.297,0.703
+oct 2023,27,Pablo Lemus,Jalisco,0.295,0.705
+oct 2023,28,Layda Sansores,Campeche,0.28,0.72
+oct 2023,29,Lorena Cuéllar,Tlaxcala,0.277,0.723
+oct 2023,30,Rocío Nahle,Veracruz,0.273,0.727
+oct 2023,31,Víctor Manuel Castro,Baja California Sur,0.26,0.74
+oct 2023,32,David Monreal,Zacatecas,0.098,0.902
+nov 2023,1,Julio Menchaca,Hidalgo,0.802,0.198
+nov 2023,2,Américo Villarreal,Tamaulipas,0.741,0.259
+nov 2023,3,Mauricio Vila,Yucatán,0.714,0.286
+nov 2023,4,Rubén Rocha Moya,Sinaloa,0.671,0.329
+nov 2023,5,Salomón Céspedes,Puebla,0.666,0.334
+nov 2023,6,Delfina Gómez,Estado de México,0.618,0.382
+nov 2023,7,Clara Brugada,CDMX,0.6,0.4
+nov 2023,8,Tere Jiménez,Aguascalientes,0.595,0.405
+nov 2023,9,Marina del Pilar Ávila,Baja California,0.577,0.423
+nov 2023,10,Ricardo Gallardo,San Luis Potosí,0.542,0.458
+nov 2023,11,Alfonso Durazo,Sonora,0.52,0.48
+nov 2023,12,Evelyn Salgado,Guerrero,0.502,0.498
+nov 2023,13,Miguel Ángel Navarro,Nayarit,0.455,0.545
+nov 2023,14,Dennise García Muñoz Ledo,Guanajuato,0.454,0.546
+nov 2023,15,Mara Lezama,Quintana Roo,0.45,0.55
+nov 2023,16,Mauricio Kuri,Querétaro,0.446,0.554
+nov 2023,17,Esteban Villegas,Durango,0.425,0.575
+nov 2023,18,María Eugenia Campos,Chihuahua,0.422,0.578
+nov 2023,19,Manolo Jiménez Salinas,Coahuila,0.4,0.6
+nov 2023,20,Enrique Alfaro,Jalisco,0.374,0.626
+nov 2023,21,Víctor Manuel Castro,Baja California Sur,0.358,0.642
+nov 2023,22,Carlos Manuel Merino,Tabasco,0.321,0.679
+nov 2023,23,Cuitláhuac García,Veracruz,0.32,0.68
+nov 2023,24,Samuel García,Nuevo León,0.292,0.708
+nov 2023,25,Lorena Cuéllar,Tlaxcala,0.258,0.742
+nov 2023,26,Indira Vizcaíno,Colima,0.247,0.753
+nov 2023,27,Salomón Jara,Oaxaca,0.246,0.754
+nov 2023,28,Alfredo Ramírez Bedolla,Michoacán,0.245,0.755
+nov 2023,29,Layda Sansores,Campeche,0.239,0.761
+nov 2023,30,Rutilio Escandón,Chiapas,0.219,0.781
+nov 2023,31,Cuauhtémoc Blanco,Morelos,0.176,0.824
+nov 2023,32,David Monreal,Zacatecas,0.125,0.875
+dic 2023,1,Julio Menchaca,Hidalgo,0.779,0.221
+dic 2023,2,Mauricio Vila,Yucatán,0.731,0.269
+dic 2023,3,Américo Villarreal,Tamaulipas,0.67,0.33
+dic 2023,4,Ricardo Gallardo,San Luis Potosí,0.669,0.331
+dic 2023,5,Delfina Gómez,Estado de México,0.657,0.343
+dic 2023,6,Tere Jiménez,Aguascalientes,0.641,0.359
+dic 2023,7,Salomón Céspedes,Puebla,0.632,0.368
+dic 2023,8,Rubén Rocha Moya,Sinaloa,0.626,0.374
+dic 2023,9,Martí Batres,CDMX,0.564,0.436
+dic 2023,10,Alfonso Durazo,Sonora,0.553,0.447
+dic 2023,11,Marina del Pilar Ávila,Baja California,0.534,0.466
+dic 2023,12,Mara Lezama,Quintana Roo,0.508,0.492
+dic 2023,13,Evelyn Salgado,Guerrero,0.503,0.497
+dic 2023,14,Manolo Jiménez Salinas,Coahuila,0.475,0.525
+dic 2023,15,Esteban Villegas,Durango,0.458,0.542
+dic 2023,16,Mauricio Kuri,Querétaro,0.426,0.574
+dic 2023,17,Alfredo Ramírez Bedolla,Michoacán,0.478,0.522
+dic 2023,18,Enrique Alfaro,Jalisco,0.4,0.6
+dic 2023,19,Dennise García Muñoz Ledo,Guanajuato,0.397,0.603
+dic 2023,20,Layda Sansores,Campeche,0.392,0.608
+dic 2023,21,Víctor Manuel Castro,Baja California Sur,0.383,0.617
+dic 2023,22,María Eugenia Campos,Chihuahua,0.367,0.633
+dic 2023,23,Salomón Jara,Oaxaca,0.363,0.637
+dic 2023,24,Lorena Cuéllar,Tlaxcala,0.347,0.653
+dic 2023,25,Cuitláhuac García,Veracruz,0.339,0.661
+dic 2023,26,Rutilio Escandón,Chiapas,0.306,0.694
+dic 2023,27,Samuel García,Nuevo León,0.273,0.727
+dic 2023,28,Miguel Ángel Navarro,Nayarit,0.263,0.737
+dic 2023,29,Carlos Manuel Merino,Tabasco,0.243,0.757
+dic 2023,30,Indira Vizcaíno,Colima,0.229,0.771
+dic 2023,31,Margarita González Saravia,Morelos,0.211,0.789
+dic 2023,32,David Monreal,Zacatecas,0.141,0.859
+ene 2024,1,Mauricio Vila,Yucatán,0.731,0.269
+ene 2024,2,Rubén Rocha Moya,Sinaloa,0.7,0.3
+ene 2024,3,Delfina Gómez,Estado de México,0.692,0.308
+ene 2024,4,Martí Batres,CDMX,0.635,0.365
+ene 2024,5,Américo Villarreal,Tamaulipas,0.625,0.375
+ene 2024,6,Alfonso Durazo,Sonora,0.62,0.38
+ene 2024,7,Esteban Villegas,Durango,0.617,0.383
+ene 2024,8,Tere Jiménez,Aguascalientes,0.61,0.39
+ene 2024,9,Salomón Céspedes,Puebla,0.609,0.391
+ene 2024,10,Marina del Pilar Ávila,Baja California,0.602,0.398
+ene 2024,11,Julio Menchaca,Hidalgo,0.597,0.403
+ene 2024,12,Ricardo Gallardo,San Luis Potosí,0.54,0.46
+ene 2024,13,Mara Lezama,Quintana Roo,0.497,0.503
+ene 2024,14,Samuel García,Nuevo León,0.466,0.534
+ene 2024,15,Mauricio Kuri,Querétaro,0.464,0.536
+ene 2024,16,María Eugenia Campos,Chihuahua,0.42,0.58
+ene 2024,17,Miguel Ángel Navarro,Nayarit,0.409,0.591
+ene 2024,18,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.392,0.608
+ene 2024,19,Enrique Alfaro,Jalisco,0.383,0.617
+ene 2024,20,Manolo Jiménez Salinas,Coahuila,0.38,0.62
+ene 2024,21,Alfredo Ramírez Bedolla,Michoacán,0.374,0.626
+ene 2024,22,Víctor Manuel Castro,Baja California Sur,0.368,0.632
+ene 2024,23,Javier May,Tabasco,0.363,0.637
+ene 2024,24,Layda Sansores,Campeche,0.346,0.654
+ene 2024,25,Lorena Cuéllar,Tlaxcala,0.344,0.656
+ene 2024,26,Salomón Jara,Oaxaca,0.335,0.665
+ene 2024,27,Cuitláhuac García,Veracruz,0.315,0.685
+ene 2024,28,Indira Vizcaíno,Colima,0.313,0.687
+ene 2024,29,Evelyn Salgado,Guerrero,0.297,0.703
+ene 2024,30,Rutilio Escandón,Chiapas,0.259,0.741
+ene 2024,31,David Monreal,Zacatecas,0.22,0.78
+ene 2024,32,Cuauhtémoc Blanco,Morelos,0.127,0.873
+feb 2024,1,Mauricio Vila,Yucatán,0.732,0.268
+feb 2024,2,Américo Villarreal,Tamaulipas,0.669,0.331
+feb 2024,3,Alejandro Armenta,Puebla,0.664,0.336
+feb 2024,4,Delfina Gómez,Estado de México,0.645,0.355
+feb 2024,5,Julio Menchaca,Hidalgo,0.632,0.368
+feb 2024,6,Tere Jiménez,Aguascalientes,0.632,0.368
+feb 2024,7,Esteban Villegas,Durango,0.605,0.395
+feb 2024,8,Ricardo Gallardo,San Luis Potosí,0.572,0.428
+feb 2024,9,Rubén Rocha Moya,Sinaloa,0.569,0.431
+feb 2024,10,Marina del Pilar Ávila,Baja California,0.552,0.448
+feb 2024,11,Martí Batres,CDMX,0.55,0.45
+feb 2024,12,Alfonso Durazo,Sonora,0.544,0.456
+feb 2024,13,Mauricio Kuri,Querétaro,0.528,0.472
+feb 2024,14,Mara Lezama,Quintana Roo,0.496,0.504
+feb 2024,15,Manolo Jiménez Salinas,Coahuila,0.487,0.513
+feb 2024,16,María Eugenia Campos,Chihuahua,0.486,0.514
+feb 2024,17,Enrique Alfaro,Jalisco,0.463,0.537
+feb 2024,18,Evelyn Salgado,Guerrero,0.453,0.547
+feb 2024,19,Miguel Ángel Navarro,Nayarit,0.444,0.556
+feb 2024,20,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.432,0.568
+feb 2024,21,Víctor Manuel Castro,Baja California Sur,0.378,0.622
+feb 2024,22,Samuel García,Nuevo León,0.374,0.626
+feb 2024,23,Salomón Jara,Oaxaca,0.373,0.627
+feb 2024,24,Alfredo Ramírez Bedolla,Michoacán,0.345,0.655
+feb 2024,25,Cuitláhuac García,Veracruz,0.31,0.69
+feb 2024,26,Indira Vizcaíno,Colima,0.282,0.718
+feb 2024,27,Layda Sansores,Campeche,0.272,0.728
+feb 2024,28,Lorena Cuéllar,Tlaxcala,0.26,0.74
+feb 2024,29,Javier May,Tabasco,0.246,0.754
+feb 2024,30,Eduardo Ramírez,Chiapas,0.214,0.786
+feb 2024,31,David Monreal,Zacatecas,0.182,0.818
+feb 2024,32,Cuauhtémoc Blanco,Morelos,0.098,0.902
+mar 2024,1,Mauricio Vila,Yucatán,0.692,0.308
+mar 2024,2,Julio Menchaca,Hidalgo,0.623,0.377
+mar 2024,3,Américo Villarreal,Tamaulipas,0.602,0.398
+mar 2024,4,Salomón Céspedes,Puebla,0.576,0.424
+mar 2024,5,Tere Jiménez,Aguascalientes,0.536,0.464
+mar 2024,6,Martí Batres,CDMX,0.527,0.473
+mar 2024,7,Esteban Villegas,Durango,0.51,0.49
+mar 2024,8,Rubén Rocha Moya,Sinaloa,0.495,0.505
+mar 2024,9,María Eugenia Campos,Chihuahua,0.492,0.508
+mar 2024,10,Manolo Jiménez Salinas,Coahuila,0.481,0.519
+mar 2024,11,Delfina Gómez,Estado de México,0.478,0.522
+mar 2024,12,Alfonso Durazo,Sonora,0.478,0.522
+mar 2024,13,Evelyn Salgado,Guerrero,0.4538,0.5462
+mar 2024,14,Marina del Pilar Ávila,Baja California,0.444,0.556
+mar 2024,15,Mara Lezama,Quintana Roo,0.442,0.558
+mar 2024,16,Ricardo Gallardo,San Luis Potosí,0.438,0.562
+mar 2024,17,Mauricio Kuri,Querétaro,0.438,0.562
+mar 2024,18,Enrique Alfaro,Jalisco,0.431,0.569
+mar 2024,19,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.412,0.588
+mar 2024,20,Cuitláhuac García,Veracruz,0.39,0.61
+mar 2024,21,Samuel García,Nuevo León,0.361,0.639
+mar 2024,22,Víctor Manuel Castro,Baja California Sur,0.344,0.656
+mar 2024,23,Miguel Ángel Navarro,Nayarit,0.31,0.69
+mar 2024,24,Salomón Jara,Oaxaca,0.305,0.695
+mar 2024,25,Indira Vizcaíno,Colima,0.282,0.718
+mar 2024,26,Alfredo Ramírez Bedolla,Michoacán,0.264,0.736
+mar 2024,27,Lorena Cuéllar,Tlaxcala,0.228,0.772
+mar 2024,28,Layda Sansores,Campeche,0.223,0.777
+mar 2024,29,Javier May,Tabasco,0.221,0.779
+mar 2024,30,David Monreal,Zacatecas,0.14,0.86
+mar 2024,31,Rutilio Escandón,Chiapas,0.128,0.872
+mar 2024,32,Cuauhtémoc Blanco,Morelos,0.123,0.877
+may 2024,1,Mauricio Vila,Yucatán,0.582,0.418
+may 2024,2,Julio Menchaca,Hidalgo,0.58,0.42
+may 2024,3,Américo Villarreal,Tamaulipas,0.543,0.457
+may 2024,4,Martí Batres,CDMX,0.503,0.497
+may 2024,5,María Eugenia Campos,Chihuahua,0.5,0.5
+may 2024,6,Delfina Gómez,Estado de México,0.487,0.513
+may 2024,7,Ricardo Gallardo,San Luis Potosí,0.466,0.534
+may 2024,8,Tere Jiménez,Aguascalientes,0.463,0.537
+may 2024,9,Manolo Jiménez Salinas,Coahuila,0.459,0.541
+may 2024,10,Alfonso Durazo,Sonora,0.457,0.543
+may 2024,11,Evelyn Salgado,Guerrero,0.455,0.545
+may 2024,12,Salomón Céspedes,Puebla,0.446,0.554
+may 2024,13,Esteban Villegas,Durango,0.439,0.561
+may 2024,14,Rubén Rocha Moya,Sinaloa,0.425,0.575
+may 2024,15,Dennise García Muñoz Ledo,Guanajuato,0.422,0.578
+may 2024,16,Enrique Alfaro,Jalisco,0.409,0.591
+may 2024,17,Mauricio Kuri,Querétaro,0.389,0.611
+may 2024,18,Marina del Pilar Ávila,Baja California,0.373,0.627
+may 2024,19,Samuel García,Nuevo León,0.342,0.658
+may 2024,20,Alfredo Ramírez Bedolla,Michoacán,0.321,0.679
+may 2024,21,Cuitláhuac García,Veracruz,0.313,0.687
+may 2024,22,Mara Lezama,Quintana Roo,0.285,0.715
+may 2024,23,Víctor Manuel Castro,Baja California Sur,0.268,0.732
+may 2024,24,Miguel Ángel Navarro,Nayarit,0.255,0.745
+may 2024,25,Layda Sansores,Campeche,0.235,0.765
+may 2024,26,Salomón Jara,Oaxaca,0.185,0.815
+may 2024,27,Javier May,Tabasco,0.184,0.816
+may 2024,28,Rutilio Escandón,Chiapas,0.177,0.823
+may 2024,29,David Monreal,Zacatecas,0.164,0.836
+may 2024,30,Cuauhtémoc Blanco,Morelos,0.163,0.837
+may 2024,31,Lorena Cuéllar,Tlaxcala,0.147,0.853
+may 2024,32,Indira Vizcaíno,Colima,0.146,0.854
+jun 2024,1,Mauricio Vila,Yucatán,0.728,0.272
+jun 2024,2,Ricardo Gallardo,San Luis Potosí,0.666,0.334
+jun 2024,3,Mara Lezama,Quintana Roo,0.634,0.366
+jun 2024,4,Salomón Céspedes,Puebla,0.617,0.383
+jun 2024,5,Martí Batres,CDMX,0.601,0.399
+jun 2024,6,Julio Menchaca,Hidalgo,0.57,0.43
+jun 2024,7,Américo Villarreal,Tamaulipas,0.558,0.442
+jun 2024,8,Rubén Rocha Moya,Sinaloa,0.499,0.501
+jun 2024,9,Tere Jiménez,Aguascalientes,0.486,0.514
+jun 2024,10,Evelyn Salgado,Guerrero,0.479,0.521
+jun 2024,11,Alfonso Durazo,Sonora,0.465,0.535
+jun 2024,12,Delfina Gómez,Estado de México,0.456,0.544
+jun 2024,13,Manolo Jiménez Salinas,Coahuila,0.45,0.55
+jun 2024,14,Esteban Villegas,Durango,0.444,0.556
+jun 2024,15,Enrique Alfaro,Jalisco,0.42,0.58
+jun 2024,16,Mauricio Kuri,Querétaro,0.407,0.593
+jun 2024,17,Marina del Pilar Ávila,Baja California,0.4,0.6
+jun 2024,18,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.335,0.665
+jun 2024,19,María Eugenia Campos,Chihuahua,0.334,0.666
+jun 2024,20,Samuel García,Nuevo León,0.304,0.696
+jun 2024,21,Miguel Ángel Navarro,Nayarit,0.291,0.709
+jun 2024,22,Víctor Manuel Castro,Baja California Sur,0.261,0.739
+jun 2024,23,Cuitláhuac García,Veracruz,0.261,0.739
+jun 2024,24,Alfredo Ramírez Bedolla,Michoacán,0.258,0.742
+jun 2024,25,Layda Sansores,Campeche,0.257,0.743
+jun 2024,26,Indira Vizcaíno,Colima,0.211,0.789
+jun 2024,27,Salomón Jara,Oaxaca,0.183,0.817
+jun 2024,28,Eduardo Ramírez,Chiapas,0.178,0.822
+jun 2024,29,Lorena Cuéllar,Tlaxcala,0.172,0.828
+jun 2024,30,David Monreal,Zacatecas,0.172,0.828
+jun 2024,31,Javier May,Tabasco,0.161,0.839
+jun 2024,32,Margarita González Saravia,Morelos,0.091,0.909
+jul 2024,1,Mauricio Vila,Yucatán,0.782,0.218
+jul 2024,2,Salomón Céspedes,Puebla,0.654,0.346
+jul 2024,3,Delfina Gómez,Estado de México,0.585,0.415
+jul 2024,4,Tere Jiménez,Aguascalientes,0.554,0.446
+jul 2024,5,Julio Menchaca,Hidalgo,0.55,0.45
+jul 2024,6,Ricardo Gallardo,San Luis Potosí,0.542,0.458
+jul 2024,7,Américo Villarreal,Tamaulipas,0.54,0.46
+jul 2024,8,Mara Lezama,Quintana Roo,0.534,0.466
+jul 2024,9,Evelyn Salgado,Guerrero,0.505,0.495
+jul 2024,10,Martí Batres,CDMX,0.491,0.509
+jul 2024,11,Manolo Jiménez Salinas,Coahuila,0.486,0.514
+jul 2024,12,Mauricio Kuri,Querétaro,0.467,0.533
+jul 2024,13,Esteban Villegas,Durango,0.441,0.559
+jul 2024,14,Alfonso Durazo,Sonora,0.434,0.566
+jul 2024,15,Layda Sansores,Campeche,0.412,0.588
+jul 2024,16,María Eugenia Campos,Chihuahua,0.395,0.605
+jul 2024,17,Enrique Alfaro,Jalisco,0.395,0.605
+jul 2024,18,Marina del Pilar Ávila,Baja California,0.371,0.629
+jul 2024,19,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.354,0.646
+jul 2024,20,Samuel García,Nuevo León,0.342,0.658
+jul 2024,21,Rubén Rocha Moya,Sinaloa,0.339,0.661
+jul 2024,22,Cuitláhuac García,Veracruz,0.281,0.719
+jul 2024,23,Alfredo Ramírez Bedolla,Michoacán,0.219,0.781
+jul 2024,24,Carlos Manuel Merino,Tabasco,0.209,0.791
+jul 2024,25,Víctor Manuel Castro,Baja California Sur,0.192,0.808
+jul 2024,26,Miguel Ángel Navarro,Nayarit,0.19,0.81
+jul 2024,27,Indira Vizcaíno,Colima,0.182,0.818
+jul 2024,28,Lorena Cuéllar,Tlaxcala,0.182,0.818
+jul 2024,29,Cuauhtémoc Blanco,Morelos,0.142,0.858
+jul 2024,30,Salomón Jara,Oaxaca,0.137,0.863
+jul 2024,31,David Monreal,Zacatecas,0.124,0.876
+jul 2024,32,Rutilio Escandón,Chiapas,0.118,0.882
+ago 2024,1,Salomón Céspedes,Puebla,0.754,0.246
+ago 2024,2,Mauricio Vila,Yucatán,0.682,0.318
+ago 2024,3,Tere Jiménez,Aguascalientes,0.552,0.448
+ago 2024,4,Américo Villarreal,Tamaulipas,0.546,0.454
+ago 2024,5,Ricardo Gallardo,San Luis Potosí,0.544,0.456
+ago 2024,6,Julio Menchaca,Hidalgo,0.54,0.46
+ago 2024,7,Esteban Villegas,Durango,0.539,0.461
+ago 2024,8,Enrique Alfaro,Jalisco,0.518,0.482
+ago 2024,9,Evelyn Salgado,Guerrero,0.511,0.489
+ago 2024,10,Manolo Jiménez Salinas,Coahuila,0.505,0.495
+ago 2024,11,Diego Sinuhe Rodríguez Vallejo,Guanajuato,0.484,0.516
+ago 2024,12,Martí Batres,CDMX,0.472,0.528
+ago 2024,13,Mauricio Kuri,Querétaro,0.426,0.574
+ago 2024,14,María Eugenia Campos,Chihuahua,0.421,0.579
+ago 2024,15,Samuel García,Nuevo León,0.418,0.582
+ago 2024,16,Mara Lezama,Quintana Roo,0.415,0.585
+ago 2024,17,Delfina Gómez,Estado de México,0.399,0.601
+ago 2024,18,Layda Sansores,Campeche,0.388,0.612
+ago 2024,19,Alfonso Durazo,Sonora,0.372,0.628
+ago 2024,20,Rubén Rocha Moya,Sinaloa,0.371,0.629
+ago 2024,21,Marina del Pilar Ávila,Baja California,0.354,0.646
+ago 2024,22,Alfredo Ramírez Bedolla,Michoacán,0.304,0.696
+ago 2024,23,Víctor Manuel Castro,Baja California Sur,0.263,0.737
+ago 2024,24,Miguel Ángel Navarro,Nayarit,0.262,0.738
+ago 2024,25,Cuitláhuac García,Veracruz,0.234,0.766
+ago 2024,26,Carlos Manuel Merino,Tabasco,0.232,0.768
+ago 2024,27,Salomón Jara,Oaxaca,0.208,0.792
+ago 2024,28,Indira Vizcaíno,Colima,0.208,0.792
+ago 2024,29,Lorena Cuéllar,Tlaxcala,0.208,0.792
+ago 2024,30,Eduardo Ramírez,Chiapas,0.189,0.811
+ago 2024,31,David Monreal,Zacatecas,0.151,0.849
+ago 2024,32,Cuauhtémoc Blanco,Morelos,0.115,0.885
+sep 2024,1,Mauricio Vila,Yucatán,0.691,0.309
+sep 2024,2,Alejandro Armenta,Puebla,0.612,0.388
+sep 2024,3,Mara Lezama,Quintana Roo,0.585,0.415
+sep 2024,4,Martí Batres,CDMX,0.539,0.461
+sep 2024,5,Ricardo Gallardo,San Luis Potosí,0.535,0.465
+sep 2024,6,Tere Jiménez,Aguascalientes,0.53,0.47
+sep 2024,7,Américo Villarreal,Tamaulipas,0.523,0.477
+sep 2024,8,Enrique Alfaro,Jalisco,0.52,0.48
+sep 2024,9,Manolo Jiménez Salinas,Coahuila,0.52,0.48
+sep 2024,10,Evelyn Salgado,guerrero,0.509,0.491
+sep 2024,11,Dennise García Muñoz Ledo,Guanajuato,0.5,0.5
+sep 2024,12,Julio Menchaca,Hidalgo,0.443,0.557
+sep 2024,13,Mauricio Kuri,Querétaro,0.442,0.558
+sep 2024,14,María Eugenia Campos,Chihuahua,0.439,0.561
+sep 2024,15,Layda Sansores,Campeche,0.432,0.568
+sep 2024,16,Samuel García,Nuevo León,0.427,0.573
+sep 2024,17,Delfina Gómez,Estado de México,0.416,0.584
+sep 2024,18,Esteban Villegas,Durango,0.409,0.591
+sep 2024,19,Marina del Pilar Ávila,Baja California,0.373,0.627
+sep 2024,20,Alfonso Durazo,Sonora,0.323,0.677
+sep 2024,21,Miguel Ángel Navarro,Nayarit,0.305,0.695
+sep 2024,22,Alfredo Ramírez Bedolla,Michoacán,0.265,0.735
+sep 2024,23,Cuitláhuac García,Veracruz,0.258,0.742
+sep 2024,24,Indira Vizcaíno,Colima,0.24,0.76
+sep 2024,25,Javier May,Tabasco,0.212,0.788
+sep 2024,26,Víctor Manuel Castro,Baja California Sur,0.193,0.807
+sep 2024,27,Salomón Jara,Oaxaca,0.189,0.811
+sep 2024,28,Eduardo Ramírez,Chiapas,0.185,0.815
+sep 2024,29,David Monreal,Zacatecas,0.16,0.84
+sep 2024,30,Rubén Rocha Moya,Sinaloa,0.127,0.873
+sep 2024,31,Lorena Cuéllar,Tlaxcala,0.075,0.925
+sep 2024,32,Cuauhtémoc Blanco,Morelos,0.074,0.926
+oct 2024,1,Alejandro Armenta,Puebla,0.612,0.388
+oct 2024,2,Mara Lezama,Quintana Roo,0.58,0.42
+oct 2024,3,Clara Brugada,cdmx,0.538,0.462
+oct 2024,4,Tere Jiménez,Aguascalientes,0.53,0.47
+oct 2024,5,Enrique Alfaro,Jalisco,0.522,0.478
+oct 2024,6,Manolo Jiménez Salinas,Coahuila,0.519,0.481
+oct 2024,7,Evelyn Salgado,Guerrero,0.51,0.49
+oct 2024,8,Ricardo Gallardo,San Luis Potosí,0.503,0.497
+oct 2024,9,Américo Villarreal,Tamaulipas,0.502,0.498
+oct 2024,10,Dennise García Muñoz Ledo,Guanajuato,0.5,0.5
+oct 2024,11,Mauricio Kuri,Querétaro,0.453,0.547
+oct 2024,12,Joaquín Díaz Mena,Yucatán,0.44,0.56
+oct 2024,13,María Eugenia Campos,Chihuahua,0.436,0.564
+oct 2024,14,Layda Sansores,Campeche,0.43,0.57
+oct 2024,15,Samuel García,Nuevo León,0.419,0.581
+oct 2024,16,Delfina Gómez,Estado de México,0.416,0.584
+oct 2024,17,Esteban Villegas,Durango,0.408,0.592
+oct 2024,18,Julio Menchaca,Hidalgo,0.406,0.594
+oct 2024,19,Marina del Pilar Ávila,Baja california,0.373,0.627
+oct 2024,20,Margarita González Saravia,Morelos,0.325,0.675
+oct 2024,21,Alfonso Durazo,Sonora,0.311,0.689
+oct 2024,22,Miguel Ángel Navarro,Nayarit,0.289,0.711
+oct 2024,23,Cuitláhuac García,Veracruz,0.261,0.739
+oct 2024,24,Alfredo Ramírez Bedolla,Michoacán,0.259,0.741
+oct 2024,25,Indira Vizcaíno,Colima,0.241,0.759
+oct 2024,26,Javier May,Tabasco,0.201,0.799
+oct 2024,27,Víctor Manuel Castro,Baja California Sur,0.193,0.807
+oct 2024,28,Salomón Jara,Oaxaca,0.178,0.822
+oct 2024,29,Eduardo Ramírez,Chiapas,0.174,0.826
+oct 2024,30,David Monreal,Zacatecas,0.154,0.846
+oct 2024,31,Rubén Rocha Moya,Sinaloa,0.127,0.873
+oct 2024,32,Lorena Cuéllar,Tlaxcala,0.074,0.926
+nov 2024,1,Javier May,Tabasco,0.666,0.334
+nov 2024,2,Alejandro Armenta,Puebla,0.83,0.17
+nov 2024,3,Dennise García Muñoz Ledo,Guanajuato,0.61,0.39
+nov 2024,4,Clara Brugada,CDMX,0.609,0.391
+nov 2024,5,Delfina Gómez,Estado de México,0.586,0.414
+nov 2024,6,Américo Villarreal,Tamaulipas,0.56,0.44
+nov 2024,7,Tere Jiménez,Aguascalientes,0.553,0.447
+nov 2024,8,Joaquín Díaz Mena,Yucatán,0.551,0.449
+nov 2024,9,Evelyn Salgado,Guerrero,0.515,0.485
+nov 2024,10,Manolo Jiménez Salinas,Coahuila,0.513,0.487
+nov 2024,11,María Eugenia Campos,Chihuahua,0.511,0.489
+nov 2024,12,Enrique Alfaro,Jalisco,0.491,0.509
+nov 2024,13,Esteban Villegas,Durango,0.487,0.513
+nov 2024,14,Mara Lezama,Quintana Roo,0.486,0.514
+nov 2024,15,Margarita González Saravia,Morelos,0.479,0.521
+nov 2024,16,Mauricio Kuri,Querétaro,0.459,0.541
+nov 2024,17,Samuel García,Nuevo León,0.433,0.567
+nov 2024,18,Layda Sansores,Campeche,0.412,0.588
+nov 2024,19,Alfonso Durazo,Sonora,0.401,0.599
+nov 2024,20,Marina del Pilar Ávila,baja california,0.399,0.601
+nov 2024,21,Víctor Manuel Castro,Baja California Sur,0.393,0.607
+nov 2024,22,Julio Menchaca,Hidalgo,0.388,0.612
+nov 2024,23,Rubén Rocha Moya,Sinaloa,0.354,0.646
+nov 2024,24,Ricardo Gallardo,San Luis Potosí,0.336,0.664
+nov 2024,25,Alfredo Ramírez Bedolla,Michoacán,0.252,0.748
+nov 2024,26,Cuitláhuac García,Veracruz,0.247,0.753
+nov 2024,27,Indira Vizcaíno,Colima,0.24,0.76
+nov 2024,28,Salomón Jara,Oaxaca,0.198,0.802
+nov 2024,29,Eduardo Ramírez,Chiapas,0.179,0.821
+nov 2024,30,David Monreal,Zacatecas,0.155,0.845
+nov 2024,31,Lorena Cuéllar,Tlaxcala,0.151,0.849
+nov 2024,32,Miguel Ángel Navarro,Nayarit,0.144,0.856
+dic 2024,1,Eduardo Ramírez,Chiapas,0.804,0.196
+dic 2024,2,Rocío Nahle,Veracruz,0.657,0.343
+dic 2024,3,Javier May,Tabasco,0.602,0.398
+dic 2024,4,Clara Brugada,CDMX,0.59,0.41
+dic 2024,5,Dennise García Muñoz Ledo,Guanajuato,0.587,0.413
+dic 2024,6,Joaquín Díaz Mena,Yucatán,0.565,0.435
+dic 2024,7,Alejandro Armenta,Puebla,0.519,0.481
+dic 2024,8,Evelyn Salgado,Guerrero,0.5,0.5
+dic 2024,9,Esteban Villegas,Durango,0.494,0.506
+dic 2024,10,Américo Villarreal,Tamaulipas,0.492,0.508
+dic 2024,11,María Eugenia Campos,Chihuahua,0.491,0.509
+dic 2024,12,Tere Jiménez,Aguascalientes,0.489,0.511
+dic 2024,13,Manolo Jiménez Salinas,Coahuila,0.486,0.514
+dic 2024,14,Alfonso Durazo,Sonora,0.482,0.518
+dic 2024,15,Delfina Gómez,Estado de México,0.479,0.521
+dic 2024,16,Margarita González Saravia,Morelos,0.477,0.523
+dic 2024,17,Pablo Lemus,Jalisco,0.473,0.527
+dic 2024,18,Mauricio Kuri,Querétaro,0.46,0.54
+dic 2024,19,Julio Menchaca,Hidalgo,0.402,0.598
+dic 2024,20,Samuel García,Nuevo León,0.393,0.607
+dic 2024,21,Miguel Ángel Navarro,Nayarit,0.39,0.61
+dic 2024,22,Ricardo Gallardo,San Luis Potosí,0.387,0.613
+dic 2024,23,Mara Lezama,Quintana Roo,0.378,0.622
+dic 2024,24,Víctor Manuel Castro,Baja California Sur,0.363,0.637
+dic 2024,25,Marina del Pilar Ávila,Baja California,0.355,0.645
+dic 2024,26,Rubén Rocha Moya,Sinaloa,0.334,0.666
+dic 2024,27,Alfredo Ramírez Bedolla,Michoacán,0.283,0.717
+dic 2024,28,Layda Sansores,Campeche,0.239,0.761
+dic 2024,29,Indira Vizcaíno,Colima,0.22,0.78
+dic 2024,30,Salomón Jara,Oaxaca,0.172,0.828
+dic 2024,31,Lorena Cuéllar,Tlaxcala,0.153,0.847
+dic 2024,32,David Monreal,Zacatecas,0.138,0.862
+ene 2025,1,Eduardo Ramírez,Chiapas,0.73,0.27
+ene 2025,2,Javier May,Tabasco,0.647,0.353
+ene 2025,3,Rocío Nahle,Veracruz,0.636,0.364
+ene 2025,4,Clara Brugada,CDMX,0.558,0.442
+ene 2025,5,Dennise García Muñoz Ledo,Guanajuato,0.554,0.446
+ene 2025,6,Delfina Gómez,Estado de México,0.538,0.462
+ene 2025,7,Mauricio Kuri,Querétaro,0.526,0.474
+ene 2025,8,Alejandro Armenta,Puebla,0.521,0.479
+ene 2025,9,María Eugenia Campos,Chihuahua,0.513,0.487
+ene 2025,10,Alfonso Durazo,Sonora,0.506,0.494
+ene 2025,11,Margarita González Saravia,Morelos,0.499,0.501
+ene 2025,12,Américo Villarreal,Tamaulipas,0.49,0.51
+ene 2025,13,Tere Jiménez,Aguascalientes,0.488,0.512
+ene 2025,14,Pablo Lemus,Jalisco,0.474,0.526
+ene 2025,15,Evelyn Salgado,Guerrero,0.456,0.544
+ene 2025,16,Esteban Villegas,Durango,0.452,0.548
+ene 2025,17,Manolo Jiménez Salinas,Coahuila,0.404,0.596
+ene 2025,18,Julio Menchaca,Hidalgo,0.404,0.596
+ene 2025,19,Samuel García,Nuevo León,0.355,0.645
+ene 2025,20,Joaquín Díaz Mena,Yucatán,0.353,0.647
+ene 2025,21,Ricardo Gallardo,San Luis Potosí,0.308,0.692
+ene 2025,22,Mara Lezama,Quintana Roo,0.296,0.704
+ene 2025,23,Alfredo Ramírez Bedolla,Michoacán,0.294,0.706
+ene 2025,24,Víctor Manuel Castro,Baja California Sur,0.279,0.721
+ene 2025,25,Miguel Ángel Navarro,Nayarit,0.27,0.73
+ene 2025,26,Marina del Pilar Ávila,baja california,0.252,0.748
+ene 2025,27,Lorena Cuéllar,Tlaxcala,0.231,0.769
+ene 2025,28,Layda Sansores,Campeche,0.23,0.77
+ene 2025,29,Rubén Rocha Moya,Sinaloa,0.213,0.787
+ene 2025,30,Indira Vizcaíno,Colima,0.206,0.794
+ene 2025,31,Salomón Jara,Oaxaca,0.102,0.898
+ene 2025,32,David Monreal,Zacatecas,0.096,0.904
+feb 2025,1,Eduardo Ramírez,Chiapas,0.744,0.256
+feb 2025,2,Javier May,Tabasco,0.663,0.337
+feb 2025,3,Rocío Nahle,Veracruz,0.644,0.356
+feb 2025,4,Margarita González Saravia,Morelos,0.547,0.453
+feb 2025,5,Mauricio Kuri,Querétaro,0.533,0.467
+feb 2025,6,Tere Jiménez,Aguascalientes,0.519,0.481
+feb 2025,7,Clara Brugada,CDMX,0.516,0.484
+feb 2025,8,Américo Villarreal,Tamaulipas,0.512,0.488
+feb 2025,9,Pablo Lemus,Jalisco,0.498,0.502
+feb 2025,10,Esteban Villegas,Durango,0.477,0.523
+feb 2025,11,Delfina Gómez,Estado de México,0.477,0.523
+feb 2025,12,Alejandro Armenta,Puebla,0.462,0.538
+feb 2025,13,Dennise García Muñoz Ledo,Guanajuato,0.459,0.541
+feb 2025,14,Evelyn Salgado,Guerrero,0.444,0.556
+feb 2025,15,María Eugenia Campos,Chihuahua,0.433,0.567
+feb 2025,16,Manolo Jiménez Salinas,Coahuila,0.429,0.571
+feb 2025,17,Julio Menchaca,Hidalgo,0.404,0.596
+feb 2025,18,Alfonso Durazo,Sonora,0.398,0.602
+feb 2025,19,Joaquín Díaz Mena,Yucatán,0.391,0.609
+feb 2025,20,Samuel García,Nuevo León,0.387,0.613
+feb 2025,21,Miguel Ángel Navarro,Nayarit,0.365,0.635
+feb 2025,22,Víctor Manuel Castro,Baja California Sur,0.31,0.69
+feb 2025,23,Sin datos,Rao,0.266,0.734
+feb 2025,24,Alfredo Ramírez Bedolla,Michoacán,0.257,0.743
+feb 2025,25,Marina del Pilar Ávila,Baja California,0.257,0.743
+feb 2025,26,Layda Sansores,Campeche,0.252,0.748
+feb 2025,27,Rubén Rocha Moya,Sinaloa,0.23,0.77
+feb 2025,28,Ricardo Gallardo,San Luis Potosí,0.278,0.722
+feb 2025,29,Salomón Jara,Oaxaca,0.134,0.866
+feb 2025,30,Sin datos,Calma,0.109,0.891
+feb 2025,31,Lorena Cuéllar,Tlaxcala,0.1,0.9
+feb 2025,32,David Monreal,Zacatecas,0.066,0.934
+mar 2025,1,Eduardo Ramírez,Chiapas,0.618,0.382
+mar 2025,2,Tere Jiménez,Aguascalientes,0.558,0.442
+mar 2025,3,Rocío Nahle,Veracruz,0.542,0.458
+mar 2025,4,Dennise García Muñoz Ledo,Guanajuato,0.493,0.507
+mar 2025,5,Américo Villarreal,Tamaulipas,0.493,0.507
+mar 2025,6,María Eugenia Campos,Chihuahua,0.486,0.514
+mar 2025,7,Mauricio Kuri,Querétaro,0.482,0.518
+mar 2025,8,Margarita González Saravia,Morelos,0.479,0.521
+mar 2025,9,Pablo Lemus,Jalisco,0.471,0.529
+mar 2025,10,Clara Brugada,CDMX,0.465,0.535
+mar 2025,11,Evelyn Salgado,Guerrero,0.465,0.535
+mar 2025,12,Javier May,Tabasco,0.443,0.557
+mar 2025,13,Alejandro Armenta,Puebla,0.435,0.565
+mar 2025,14,Alfonso Durazo,Sonora,0.415,0.585
+mar 2025,15,Manolo Jiménez Salinas,Coahuila,0.414,0.586
+mar 2025,16,Esteban Villegas,Durango,0.398,0.602
+mar 2025,17,Delfina Gómez,Estado de México,0.388,0.612
+mar 2025,18,Joaquín Díaz Mena,Yucatán,0.375,0.625
+mar 2025,19,Julio Menchaca,Hidalgo,0.355,0.645
+mar 2025,20,Miguel Ángel Navarro,Nayarit,0.328,0.672
+mar 2025,21,Samuel García,Nuevo León,0.293,0.707
+mar 2025,22,Alfredo Ramírez Bedolla,Michoacán,0.283,0.717
+mar 2025,23,Víctor Manuel Castro,Baja California Sur,0.273,0.727
+mar 2025,24,Layda Sansores,Campeche,0.273,0.727
+mar 2025,25,Ricardo Gallardo,San Luis Potosí,0.251,0.749
+mar 2025,26,Lorena Cuéllar,Tlaxcala,0.239,0.761
+mar 2025,27,Rubén Rocha Moya,Sinaloa,0.201,0.799
+mar 2025,28,Mara Lezama,Quintana Roo,0.189,0.811
+mar 2025,29,Indira Vizcaíno,Colima,0.178,0.822
+mar 2025,30,Marina del Pilar Ávila,Baja California,0.168,0.832
+mar 2025,31,Salomón Jara,Oaxaca,0.096,0.904
+mar 2025,32,David Monreal,Zacatecas,0.083,0.917
+abr 2025,1,Alfonso Durazo,Sonora,0.506,0.494
+abr 2025,2,Rocío Nahle,Veracruz,0.495,0.505
+abr 2025,3,Eduardo Ramírez,Chiapas,0.467,0.533
+abr 2025,4,María Eugenia Campos,Chihuahua,0.457,0.543
+abr 2025,5,Américo Villarreal,Tamaulipas,0.448,0.552
+abr 2025,6,Clara Brugada,CDMX,0.446,0.554
+abr 2025,7,Mauricio Kuri,Querétaro,0.439,0.561
+abr 2025,8,Dennise García Muñoz Ledo,Guanajuato,0.429,0.571
+abr 2025,9,Delfina Gómez,Estado de México,0.422,0.578
+abr 2025,10,Evelyn Salgado,Guerrero,0.416,0.584
+abr 2025,11,Pablo Lemus,Jalisco,0.414,0.586
+abr 2025,12,Javier May,Tabasco,0.407,0.593
+abr 2025,13,Tere Jiménez,Aguascalientes,0.382,0.618
+abr 2025,14,Margarita González Saravia,Morelos,0.381,0.619
+abr 2025,15,Lorena Cuéllar,Tlaxcala,0.35,0.65
+abr 2025,16,Manolo Jiménez Salinas,Coahuila,0.344,0.656
+abr 2025,17,Esteban Villegas,Durango,0.34,0.66
+abr 2025,18,Samuel García,Nuevo León,0.332,0.668
+abr 2025,19,Alejandro Armenta,Puebla,0.327,0.673
+abr 2025,20,Ricardo Gallardo,San Luis Potosí,0.306,0.694
+abr 2025,21,Joaquín Díaz Mena,Yucatán,0.285,0.715
+abr 2025,22,Layda Sansores,Campeche,0.266,0.734
+abr 2025,23,Indira Vizcaíno,Colima,0.253,0.747
+abr 2025,24,Rubén Rocha Moya,Sinaloa,0.225,0.775
+abr 2025,25,Mara Lezama,Quintana Roo,0.224,0.776
+abr 2025,26,Alfredo Ramírez Bedolla,Michoacán,0.219,0.781
+abr 2025,27,Miguel Ángel Navarro,Nayarit,0.214,0.786
+abr 2025,28,Julio Menchaca,Hidalgo,0.196,0.804
+abr 2025,29,Víctor Manuel Castro,Baja California Sur,0.188,0.812
+abr 2025,30,Marina del Pilar Ávila,Baja California,0.153,0.847
+abr 2025,31,Salomón Jara,Oaxaca,0.091,0.909
+abr 2025,32,David Monreal,Zacatecas,0.077,0.923
+may 2025,1,Eduardo Ramírez,Chiapas,0.642,0.358
+may 2025,2,Lorena Cuéllar,Tlaxcala,0.625,0.375
+may 2025,3,Tere Jiménez,Aguascalientes,0.525,0.475
+may 2025,4,Alfonso Durazo,Sonora,0.493,0.507
+may 2025,5,Dennise García Muñoz Ledo,Guanajuato,0.478,0.522
+may 2025,6,Clara Brugada,CDMX,0.458,0.542
+may 2025,7,Mauricio Kuri,Querétaro,0.449,0.551
+may 2025,8,Américo Villarreal,Tamaulipas,0.444,0.556
+may 2025,9,Esteban Villegas,Durango,0.441,0.559
+may 2025,10,Delfina Gómez,Estado de México,0.438,0.562
+may 2025,11,María Eugenia Campos,Chihuahua,0.432,0.568
+may 2025,12,Rocío Nahle,Veracruz,0.422,0.578
+may 2025,13,Evelyn Salgado,Guerrero,0.412,0.588
+may 2025,14,Samuel García,Nuevo León,0.405,0.595
+may 2025,15,Manolo Jiménez Salinas,Coahuila,0.398,0.602
+may 2025,16,Pablo Lemus,Jalisco,0.379,0.621
+may 2025,17,Víctor Manuel Castro,Baja California Sur,0.356,0.644
+may 2025,18,Javier May,Tabasco,0.322,0.678
+may 2025,19,Joaquín Díaz Mena,Yucatán,0.307,0.693
+may 2025,20,Alejandro Armenta,Puebla,0.3,0.7
+may 2025,21,Margarita González Saravia,Morelos,0.299,0.701
+may 2025,22,Ricardo Gallardo,San Luis Potosí,0.281,0.719
+may 2025,23,Mara Lezama,Quintana Roo,0.271,0.729
+may 2025,24,Miguel Ángel Navarro,Nayarit,0.26,0.74
+may 2025,25,Layda Sansores,Campeche,0.255,0.745
+may 2025,26,Indira Vizcaíno,Colima,0.215,0.785
+may 2025,27,Julio Menchaca,Hidalgo,0.211,0.789
+may 2025,28,Alfredo Ramírez Bedolla,Michoacán,0.206,0.794
+may 2025,29,Rubén Rocha Moya,Sinaloa,0.143,0.857
+may 2025,30,David Monreal,Zacatecas,0.125,0.875
+may 2025,31,Marina del Pilar Ávila,Baja California,0.125,0.875
+may 2025,32,Salomón Jara,Oaxaca,0.086,0.914
+jun 2025,1,Eduardo Ramírez,Chiapas,0.675,0.325
+jun 2025,2,Tere Jiménez,Aguascalientes,0.542,0.458
+jun 2025,3,Américo Villarreal,Tamaulipas,0.528,0.472
+jun 2025,4,Alfonso Durazo,Sonora,0.524,0.476
+jun 2025,5,Dennise García Muñoz Ledo,Guanajuato,0.488,0.512
+jun 2025,6,Esteban Villegas,Durango,0.476,0.524
+jun 2025,7,Clara Brugada,CDMX,0.46,0.54
+jun 2025,8,María Eugenia Campos,Chihuahua,0.457,0.543
+jun 2025,9,Lorena Cuéllar,Tlaxcala,0.45,0.55
+jun 2025,10,Rocío Nahle,Veracruz,0.427,0.573
+jun 2025,11,Delfina Gómez,Estado de México,0.421,0.579
+jun 2025,12,Mauricio Kuri,Querétaro,0.402,0.598
+jun 2025,13,Manolo Jiménez Salinas,Coahuila,0.402,0.598
+jun 2025,14,Margarita González Saravia,Morelos,0.402,0.598
+jun 2025,15,Pablo Lemus,Jalisco,0.387,0.613
+jun 2025,16,Evelyn Salgado,Guerrero,0.377,0.623
+jun 2025,17,Samuel García,Nuevo León,0.367,0.633
+jun 2025,18,Javier May,Tabasco,0.343,0.657
+jun 2025,19,Joaquín Díaz Mena,Yucatán,0.335,0.665
+jun 2025,20,Ricardo Gallardo,San Luis Potosí,0.326,0.674
+jun 2025,21,Mara Lezama,Quintana Roo,0.322,0.678
+jun 2025,22,Layda Sansores,Campeche,0.313,0.687
+jun 2025,23,Miguel Ángel Navarro,Nayarit,0.312,0.688
+jun 2025,24,Indira Vizcaíno,Colima,0.294,0.706
+jun 2025,25,Salomón Jara,Oaxaca,0.272,0.728
+jun 2025,26,Rubén Rocha Moya,Sinaloa,0.264,0.736
+jun 2025,27,Alejandro Armenta,Puebla,0.251,0.749
+jun 2025,28,Víctor Manuel Castro,Baja California Sur,0.248,0.752
+jun 2025,29,Julio Menchaca,Hidalgo,0.243,0.757
+jun 2025,30,Alfredo Ramírez Bedolla,Michoacán,0.177,0.823
+jun 2025,31,Marina del Pilar Ávila,Baja California,0.171,0.829
+jun 2025,32,David Monreal,Zacatecas,0.107,0.893
+jul 2025,1,Eduardo Ramírez,Chiapas,0.666,0.334
+jul 2025,2,Dennise García Muñoz Ledo,Guanajuato,0.603,0.397
+jul 2025,3,Mauricio Kuri,Querétaro,0.538,0.462
+jul 2025,4,Tere Jiménez,Aguascalientes,0.493,0.507
+jul 2025,5,María Eugenia Campos,Chihuahua,0.491,0.509
+jul 2025,6,Américo Villarreal,Tamaulipas,0.464,0.536
+jul 2025,7,Javier May,Tabasco,0.459,0.541
+jul 2025,8,Clara Brugada,CDMX,0.421,0.579
+jul 2025,9,Pablo Lemus,Jalisco,0.415,0.585
+jul 2025,10,Manolo Jiménez Salinas,Coahuila,0.406,0.594
+jul 2025,11,Samuel García,Nuevo León,0.394,0.606
+jul 2025,12,Alfonso Durazo,Sonora,0.389,0.611
+jul 2025,13,Miguel Ángel Navarro,Nayarit,0.367,0.633
+jul 2025,14,Evelyn Salgado,Guerrero,0.358,0.642
+jul 2025,15,Joaquín Díaz Mena,Yucatán,0.356,0.644
+jul 2025,16,Salomón Jara,Oaxaca,0.323,0.677
+jul 2025,17,Margarita González Saravia,Morelos,0.32,0.68
+jul 2025,18,Layda Sansores,Campeche,0.317,0.683
+jul 2025,19,Esteban Villegas,Durango,0.314,0.686
+jul 2025,20,Delfina Gómez,Estado de México,0.31,0.69
+jul 2025,21,Lorena Cuéllar,Tlaxcala,0.287,0.713
+jul 2025,22,Mara Lezama,Quintana Roo,0.27,0.73
+jul 2025,23,Alfredo Ramírez Bedolla,Michoacán,0.264,0.736
+jul 2025,24,Rocío Nahle,Veracruz,0.256,0.744
+jul 2025,25,Alejandro Armenta,Puebla,0.251,0.749
+jul 2025,26,Ricardo Gallardo,San Luis Potosí,0.235,0.765
+jul 2025,27,Rubén Rocha Moya,Sinaloa,0.21,0.79
+jul 2025,28,Víctor Manuel Castro,Baja California Sur,0.202,0.798
+jul 2025,29,Indira Vizcaíno,Colima,0.201,0.799
+jul 2025,30,Julio Menchaca,Hidalgo,0.2,0.8
+jul 2025,31,Marina del Pilar Ávila,Baja California,0.166,0.834
+jul 2025,32,David Monreal,Zacatecas,0.083,0.917
+ago 2025,1,Eduardo Ramírez,Chiapas,0.744,0.256
+ago 2025,2,Dennise García Muñoz Ledo,Guanajuato,0.633,0.367
+ago 2025,3,Tere Jiménez,Aguascalientes,0.533,0.467
+ago 2025,4,Mauricio Kuri,Querétaro,0.524,0.476
+ago 2025,5,María Eugenia Campos,Chihuahua,0.509,0.491
+ago 2025,6,Javier May,Tabasco,0.501,0.499
+ago 2025,7,Mara Lezama,Quintana Roo,0.453,0.547
+ago 2025,8,Américo Villarreal,Tamaulipas,0.45,0.55
+ago 2025,9,Clara Brugada,CDMX,0.432,0.568
+ago 2025,10,Alfonso Durazo,Sonora,0.401,0.599
+ago 2025,11,Pablo Lemus,Jalisco,0.4,0.6
+ago 2025,12,Manolo Jiménez Salinas,Coahuila,0.382,0.618
+ago 2025,13,Samuel García,Nuevo León,0.379,0.621
+ago 2025,14,Joaquín Díaz Mena,Yucatán,0.37,0.63
+ago 2025,15,Evelyn Salgado,Guerrero,0.35,0.65
+ago 2025,16,Miguel Ángel Navarro,Nayarit,0.344,0.656
+ago 2025,17,Esteban Villegas,Durango,0.315,0.685
+ago 2025,18,Delfina Gómez,Estado de México,0.299,0.701
+ago 2025,19,Margarita González Saravia,Morelos,0.293,0.707
+ago 2025,20,Rocío Nahle,Veracruz,0.291,0.709
+ago 2025,21,Layda Sansores,Campeche,0.29,0.71
+ago 2025,22,Ricardo Gallardo,San Luis Potosí,0.288,0.712
+ago 2025,23,Alfredo Ramírez Bedolla,Michoacán,0.234,0.766
+ago 2025,24,Víctor Manuel Castro,Baja California Sur,0.199,0.801
+ago 2025,25,Rubén Rocha Moya,Sinaloa,0.18,0.82
+ago 2025,26,Alejandro Armenta,Puebla,0.176,0.824
+ago 2025,27,Marina del Pilar Ávila,Baja California,0.166,0.834
+ago 2025,28,David Monreal,Zacatecas,0.151,0.849
+ago 2025,29,Julio Menchaca,Hidalgo,0.15,0.85
+ago 2025,30,Lorena Cuéllar,Tlaxcala,0.147,0.853
+ago 2025,31,Indira Vizcaíno,Colima,0.128,0.872
+ago 2025,32,Salomón Jara,Oaxaca,0.119,0.881
+sep 2025,1,Eduardo Ramírez,Chiapas,0.676,0.324
+sep 2025,2,Dennise García Muñoz Ledo,Guanajuato,0.562,0.438
+sep 2025,3,Javier May,Tabasco,0.562,0.438
+sep 2025,4,Mauricio Kuri,Querétaro,0.562,0.438
+sep 2025,5,Clara Brugada,CDMX,0.505,0.495
+sep 2025,6,María Eugenia Campos,Chihuahua,0.475,0.525
+sep 2025,7,Manolo Jiménez Salinas,Coahuila,0.475,0.525
+sep 2025,8,Américo Villarreal,Tamaulipas,0.443,0.557
+sep 2025,9,Samuel García,Nuevo León,0.439,0.561
+sep 2025,10,Pablo Lemus,Jalisco,0.409,0.591
+sep 2025,11,Alfonso Durazo,Sonora,0.369,0.631
+sep 2025,12,Tere Jiménez,Aguascalientes,0.368,0.632
+sep 2025,13,Joaquín Díaz Mena,Yucatán,0.347,0.653
+sep 2025,14,Evelyn Salgado,Guerrero,0.342,0.658
+sep 2025,15,Esteban Villegas,Durango,0.32,0.68
+sep 2025,16,Salomón Jara,Oaxaca,0.317,0.683
+sep 2025,17,Ricardo Gallardo,San Luis Potosí,0.297,0.703
+sep 2025,18,Mara Lezama,Quintana Roo,0.278,0.722
+sep 2025,19,Delfina Gómez,Estado de México,0.277,0.723
+sep 2025,20,Rocío Nahle,Veracruz,0.257,0.743
+sep 2025,21,Layda Sansores,Campeche,0.249,0.751
+sep 2025,22,Alfredo Ramírez Bedolla,Michoacán,0.234,0.766
+sep 2025,23,Miguel Ángel Navarro,Nayarit,0.234,0.766
+sep 2025,24,Margarita González Saravia,Morelos,0.218,0.782
+sep 2025,25,Indira Vizcaíno,Colima,0.196,0.804
+sep 2025,26,Julio Menchaca,Hidalgo,0.188,0.812
+sep 2025,27,Marina del Pilar Ávila,Baja California,0.173,0.827
+sep 2025,28,Víctor Manuel Castro,Baja California Sur,0.163,0.837
+sep 2025,29,Alejandro Armenta,Puebla,0.158,0.842
+sep 2025,30,Rubén Rocha Moya,Sinaloa,0.128,0.872
+sep 2025,31,David Monreal,Zacatecas,0.122,0.878
+sep 2025,32,Lorena Cuéllar,Tlaxcala,0.08,0.92
+oct 2025,1,Eduardo Ramírez,Chiapas,0.637,0.363
+oct 2025,2,María Eugenia Campos,Chihuahua,0.572,0.428
+oct 2025,3,Samuel García,Nuevo León,0.563,0.437
+oct 2025,4,Manolo Jiménez Salinas,Coahuila,0.487,0.513
+oct 2025,5,Mauricio Kuri,Querétaro,0.479,0.521
+oct 2025,6,Javier May,Tabasco,0.478,0.522
+oct 2025,7,Tere Jiménez,Aguascalientes,0.472,0.528
+oct 2025,8,Dennise García Muñoz Ledo,Guanajuato,0.454,0.546
+oct 2025,9,Américo Villarreal,Tamaulipas,0.437,0.563
+oct 2025,10,Clara Brugada,CDMX,0.421,0.579
+oct 2025,11,Pablo Lemus,Jalisco,0.419,0.581
+oct 2025,12,Evelyn Salgado,Guerrero,0.337,0.663
+oct 2025,13,Esteban Villegas,Durango,0.324,0.676
+oct 2025,14,Delfina Gómez,Estado de México,0.304,0.696
+oct 2025,15,Alfonso Durazo,Sonora,0.287,0.713
+oct 2025,16,Joaquín Díaz Mena,Yucatán,0.274,0.726
+oct 2025,17,Margarita González Saravia,Morelos,0.269,0.731
+oct 2025,18,Ricardo Gallardo,San Luis Potosí,0.249,0.751
+oct 2025,19,Layda Sansores,Campeche,0.233,0.767
+oct 2025,20,Julio Menchaca,Hidalgo,0.21,0.79
+oct 2025,21,Miguel Ángel Navarro,Nayarit,0.207,0.793
+oct 2025,22,Mara Lezama,Quintana Roo,0.207,0.793
+oct 2025,23,Alejandro Armenta,Puebla,0.176,0.824
+oct 2025,24,Marina del Pilar Ávila,Baja California,0.155,0.845
+oct 2025,25,Indira Vizcaíno,Colima,0.151,0.849
+oct 2025,26,Rubén Rocha Moya,Sinaloa,0.143,0.857
+oct 2025,27,Rocío Nahle,Veracruz,0.13,0.87
+oct 2025,28,Víctor Manuel Castro,Baja California Sur,0.122,0.878
+oct 2025,29,Alfredo Ramírez Bedolla,Michoacán,0.11,0.89
+oct 2025,30,Lorena Cuéllar,Tlaxcala,0.107,0.893
+oct 2025,31,David Monreal,Zacatecas,0.076,0.924
+oct 2025,32,Salomón Jara,Oaxaca,0.074,0.926
+nov 2025,1,Mauricio Kuri,Querétaro,0.643,0.357
+nov 2025,2,Eduardo Ramírez,Chiapas,0.642,0.358
+nov 2025,3,Dennise García Muñoz Ledo,Guanajuato,0.534,0.466
+nov 2025,4,Tere Jiménez,Aguascalientes,0.499,0.501
+nov 2025,5,Manolo Jiménez Salinas,Coahuila,0.496,0.504
+nov 2025,6,María Eugenia Campos,Chihuahua,0.495,0.505
+nov 2025,7,Pablo Lemus,Jalisco,0.46,0.54
+nov 2025,8,Samuel García,Nuevo León,0.445,0.555
+nov 2025,9,Américo Villarreal,Tamaulipas,0.443,0.557
+nov 2025,10,Javier May,Tabasco,0.429,0.571
+nov 2025,11,Clara Brugada,CDMX,0.428,0.572
+nov 2025,12,Mara Lezama,Quintana Roo,0.395,0.605
+nov 2025,13,Alfonso Durazo,Sonora,0.368,0.632
+nov 2025,14,Evelyn Salgado,Guerrero,0.358,0.642
+nov 2025,15,Ricardo Gallardo,San Luis Potosí,0.317,0.683
+nov 2025,16,Delfina Gómez,Estado de México,0.315,0.685
+nov 2025,17,Layda Sansores,Campeche,0.314,0.686
+nov 2025,18,Esteban Villegas,Durango,0.314,0.686
+nov 2025,19,Margarita González Saravia,Morelos,0.276,0.724
+nov 2025,20,Alfredo Ramírez Bedolla,Michoacán,0.271,0.729
+nov 2025,21,Joaquín Díaz Mena,Yucatán,0.267,0.733
+nov 2025,22,Miguel Ángel Navarro,Nayarit,0.242,0.758
+nov 2025,23,Julio Menchaca,Hidalgo,0.238,0.762
+nov 2025,24,Rubén Rocha Moya,Sinaloa,0.216,0.784
+nov 2025,25,Indira Vizcaíno,Colima,0.199,0.801
+nov 2025,26,Alejandro Armenta,Puebla,0.198,0.802
+nov 2025,27,Víctor Manuel Castro,Baja California Sur,0.194,0.806
+nov 2025,28,Rocío Nahle,Veracruz,0.149,0.851
+nov 2025,29,Lorena Cuéllar,Tlaxcala,0.149,0.851
+nov 2025,30,Salomón Jara,Oaxaca,0.145,0.855
+nov 2025,31,Marina del Pilar Ávila,Baja California,0.145,0.855
+nov 2025,32,David Monreal,Zacatecas,0.112,0.888
+dic 2025,1,Eduardo Ramírez,Chiapas,0.678,0.322
+dic 2025,2,Mauricio Kuri,Querétaro,0.503,0.497
+dic 2025,3,Samuel García,Nuevo León,0.48,0.52
+dic 2025,4,Clara Brugada,CDMX,0.478,0.522
+dic 2025,5,Tere Jiménez,Aguascalientes,0.444,0.556
+dic 2025,6,María Eugenia Campos,Chihuahua,0.441,0.559
+dic 2025,7,Américo Villarreal,Tamaulipas,0.438,0.562
+dic 2025,8,Dennise García Muñoz Ledo,Guanajuato,0.437,0.563
+dic 2025,9,Javier May,Tabasco,0.412,0.588
+dic 2025,10,Manolo Jiménez Salinas,Coahuila,0.404,0.596
+dic 2025,11,Evelyn Salgado,Guerrero,0.378,0.622
+dic 2025,12,Alfonso Durazo,Sonora,0.367,0.633
+dic 2025,13,Pablo Lemus,Jalisco,0.356,0.644
+dic 2025,14,Joaquín Díaz Mena,Yucatán,0.322,0.678
+dic 2025,15,Mara Lezama,Quintana Roo,0.313,0.687
+dic 2025,16,Ricardo Gallardo,San Luis Potosí,0.298,0.702
+dic 2025,17,Esteban Villegas,Durango,0.296,0.704
+dic 2025,18,Delfina Gómez,Estado de México,0.268,0.732
+dic 2025,19,Rocío Nahle,Veracruz,0.252,0.748
+dic 2025,20,Miguel Ángel Navarro,Nayarit,0.235,0.765
+dic 2025,21,Margarita González Saravia,Morelos,0.229,0.771
+dic 2025,22,Layda Sansores,Campeche,0.229,0.771
+dic 2025,23,Alfredo Ramírez Bedolla,Michoacán,0.198,0.802
+dic 2025,24,Rubén Rocha Moya,Sinaloa,0.194,0.806
+dic 2025,25,Julio Menchaca,Hidalgo,0.19,0.81
+dic 2025,26,Alejandro Armenta,Puebla,0.183,0.817
+dic 2025,27,Víctor Manuel Castro,Baja California Sur,0.163,0.837
+dic 2025,28,Lorena Cuéllar,Tlaxcala,0.159,0.841
+dic 2025,29,Indira Vizcaíno,Colima,0.138,0.862
+dic 2025,30,Salomón Jara,Oaxaca,0.121,0.879
+dic 2025,31,David Monreal,Zacatecas,0.116,0.884
+dic 2025,32,Marina del Pilar Ávila,Baja California,0.112,0.888
