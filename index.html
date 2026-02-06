@@ -372,7 +372,7 @@
                 }));
             };
 
-            // 1. Histórico (Líneas + Máx/Mín)
+            // 1. Histórico (Líneas + Máx/Mín/Promedio)
             let dH = rawData.filter(d => d.Estado === e);
             if (c !== "Todas") dH = dH.filter(d => d.Encuesta === c);
             const dataH = process(dH.sort((a, b) => parseMes(a.Mes) - parseMes(b.Mes)), 'Mes');
@@ -401,7 +401,7 @@
             render('chH', 'line', {
                 labels: mesesDisponibles,
                 datasets: [
-                    { label: 'Hidalgo', data: dataH.map(x => x.val), color: '#47000f', border: 3 },
+                    { label: 'Hidalgo', data: dataH.map(x => x.val), color: '#47000f', border: 4 },
                     { label: 'Máximo Nacional', data: dataMax, color: '#27ae60', border: 2, dashed: [5, 5] },
                     { label: 'Mínimo Nacional', data: dataMin, color: '#e74c3c', border: 2, dashed: [5, 5] }
                 ]
