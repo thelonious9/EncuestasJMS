@@ -471,6 +471,16 @@
         };
         const MESES_REV = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
+        function cleanText(s) {
+            if (!s || typeof s !== 'string') return s;
+            // Resolver el problema de triple codificación (ÃƒÂ³ -> ó) y similares
+            return s.trim()
+                .replace(/ÃƒÂ³/g, 'ó').replace(/ÃƒÂ¡/g, 'á').replace(/ÃƒÂ©/g, 'é').replace(/ÃƒÂ­/g, 'í').replace(/ÃƒÂº/g, 'ú').replace(/ÃƒÂ±/g, 'ñ')
+                .replace(/ÃƒÂ“/g, 'Ó').replace(/ÃƒÂ/g, 'Á').replace(/ÃƒÂ‰/g, 'É').replace(/ÃƒÂ/g, 'Í').replace(/ÃƒÂš/g, 'Ú').replace(/ÃƒÂ‘/g, 'Ñ')
+                .replace(/Ã³/g, 'ó').replace(/Ã¡/g, 'á').replace(/Ã©/g, 'é').replace(/Ã­/g, 'í').replace(/Ãº/g, 'ú').replace(/Ã±/g, 'ñ')
+                .replace(/Ã“/g, 'Ó').replace(/Ã/g, 'Á').replace(/Ã‰/g, 'É').replace(/Ã/g, 'Í').replace(/Ãš/g, 'Ú').replace(/Ã‘/g, 'Ñ');
+        }
+
         function parseMes(s) {
             if (!s || s === 'Todas' || s === 'S/F') return new Date(0);
             const str = String(s).toLowerCase().trim();
@@ -481,7 +491,19 @@
                 if (!isNaN(d.getTime())) return d;
             }
 
-            // 2. Formatos: "sep-22" o "enero 2025" o "septiembre 2022"
+            // 2. Nuevo formato detectado en CSV: 1/3/26 (D/M/YY)
+            if (str.includes('/')) {
+                const parts = str.split('/');
+                if (parts.length >= 2) {
+                    // Asumimos formato D/M/YY o D/M/YYYY (estándar en México)
+                    let m = parseInt(parts[1]) - 1; // Los meses en JS son 0-11
+                    let y = parts.length === 3 ? parseInt(parts[2]) : new Date().getFullYear();
+                    if (y < 100) y += 2000;
+                    return new Date(y, m, 1);
+                }
+            }
+
+            // 3. Formatos: "sep-22" o "enero 2025" o "septiembre 2022"
             const parts = str.split(/[\s-]+/);
             const mesStr = parts[0];
             const anioStr = parts[1];
@@ -508,9 +530,11 @@
         }
 
         function loadData() {
+            const cacheBust = "?t=" + Date.now();
             setStatus("Cargando datos principales (" + FILE_NAME + ")...");
-            Papa.parse(FILE_NAME, {
+            Papa.parse(FILE_NAME + cacheBust, {
                 download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                encoding: "UTF-8", // Revertido a UTF-8 para coincidir con la conversión del usuario
                 complete: function (results) {
                     if (results.data && results.data.length > 0) {
                         processMainData(results.data);
@@ -528,16 +552,29 @@
 
         function processMainData(data) {
             const keys = Object.keys(data[0]);
-            let apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
-            if (!apKey) apKey = keys[6];
+            
+            // Función ultra-robusta para buscar columnas
+            const findKey = (search) => {
+                const s = search.toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, ""); // Solo letras/números
+                return keys.find(k => {
+                    const cleanK = k.replace(/^\uFEFF/, "").toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+                    return cleanK === s || cleanK.includes(s) || s.includes(cleanK);
+                });
+            };
 
-            rawData = data.filter(d => d.Estado && d[apKey] != null).map(d => {
+            const apKey = findKey("aprobacion") || keys[6];
+            const estKey = findKey("estado") || keys[5] || "Estado";
+            const encKey = findKey("encuesta") || keys[7] || "Encuesta";
+            const mesKey = findKey("mes") || keys[1] || "Mes";
+
+            rawData = data.filter(d => d[estKey] && d[apKey] != null).map(d => {
                 const valStr = String(d[apKey]).replace(',', '.');
                 return {
                     ...d,
-                    Estado: String(d.Estado).trim(),
-                    Encuesta: d.Encuesta ? String(d.Encuesta).trim() : "Desconocida",
-                    Mes: formatMes(parseMes(d.Mes)), // NORMALIZACIÓN
+                    Estado: cleanText(d[estKey]),
+                    Encuesta: d[encKey] ? cleanText(d[encKey]) : "Desconocida",
+                    Gobernador: d.Gobernador ? cleanText(d.Gobernador) : "",
+                    Mes: formatMes(parseMes(d[mesKey])),
                     Val: parseFloat(valStr) * 100
                 };
             }).filter(d => !isNaN(d.Val));
@@ -545,26 +582,43 @@
         }
 
         function loadRubroData() {
-            Papa.parse(RUBRO_FILE, {
+            const cacheBust = "?t=" + Date.now();
+            Papa.parse(RUBRO_FILE + cacheBust, {
                 download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                encoding: "UTF-8",
                 complete: function (results) {
                     if (results.data && results.data.length > 0) {
                         const keys = Object.keys(results.data[0]);
-                        // Buscar columna de aprobación (maneja encoding)
-                        let apKey = keys.find(k => k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes("aprobacion"));
-                        if (!apKey) apKey = 'Aprobación';
+                        const findKey = (search) => {
+                            const s = search.toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+                            return keys.find(k => {
+                                const cleanK = k.replace(/^\uFEFF/, "").toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+                                return cleanK === s || cleanK.includes(s) || s.includes(cleanK);
+                            });
+                        };
+
+                        // Fallback por índice si falla el nombre (común en archivos con encodings rotos)
+                        let mesKey = findKey("mes") || keys[0];
+                        let estKey = findKey("estado") || keys[3];
+                        let apKey = findKey("aprobacion") || keys[4];
+                        let rubKey = findKey("rubros") || keys[5];
+                        let encKey = findKey("encuesta") || keys[6];
+                        let acuKey = findKey("acuerdo") || keys[8];
 
                         rubroData = results.data.map(d => {
+                            const val = parseFloat(String(d[apKey] || 0).replace(',', '.'));
                             return {
                                 ...d,
-                                Estado: d.Estado ? String(d.Estado).trim() : "Desconocido",
-                                Encuesta: d.Encuesta ? String(d.Encuesta).trim() : "Desconocida",
-                                Rubros: d.Rubros ? String(d.Rubros).trim() : "Otros",
-                                Mes: formatMes(parseMes(d.Mes)), // NORMALIZACIÓN
-                                Val: parseFloat(String(d[apKey] || 0).replace(',', '.')) * 100
+                                Estado: d[estKey] ? cleanText(d[estKey]) : "Desconocido",
+                                Encuesta: d[encKey] ? cleanText(d[encKey]) : "Desconocida",
+                                Rubros: d[rubKey] ? cleanText(d[rubKey]) : "Otros",
+                                Acuerdo_PED: d[acuKey] ? cleanText(d[acuKey]) : "Otros",
+                                Mes: formatMes(parseMes(d[mesKey])),
+                                Val: val * 100
                             };
-                        }).filter(d => !isNaN(d.Val));
-                        setStatus("Rubros cargados. Cargando datos de revocación...");
+                        }).filter(d => !isNaN(d.Val) && d.Val > 0);
+                        console.log("Rubros procesados:", rubroData.length);
+                        setStatus("Rubros cargados: " + rubroData.length + ". Cargando datos de revocación...");
                         loadRevData();
                     } else {
                         setStatus("Aviso: El archivo " + RUBRO_FILE + " está vacío. Cargando revocación...");
@@ -579,16 +633,32 @@
         }
 
         function loadRevData() {
-            Papa.parse(REV_FILE, {
+            const cacheBust = "?t=" + Date.now();
+            Papa.parse(REV_FILE + cacheBust, {
                 download: true, header: true, dynamicTyping: true, skipEmptyLines: true,
+                encoding: "UTF-8",
                 complete: function (results) {
                     if (results.data && results.data.length > 0) {
+                        const keys = Object.keys(results.data[0]);
+                        const findKey = (search) => {
+                            const s = search.toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+                            return keys.find(k => {
+                                const cleanK = k.replace(/^\uFEFF/, "").toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+                                return cleanK === s || cleanK.includes(s) || s.includes(cleanK);
+                            });
+                        };
+
+                        const mesKey = findKey("mes") || keys[1];
+                        const estKey = findKey("estado") || keys[0];
+                        const sigaKey = findKey("siga") || keys[2];
+                        const revKey = findKey("revoca") || keys[3];
+
                         revData = results.data.map(d => ({
                             ...d,
-                            Estado: d.Estado ? String(d.Estado).trim() : "Desconocido",
-                            Mes: formatMes(parseMes(d.Mes)),
-                            Siga: parseFloat(String(d['Que Siga (%)'] || 0).replace(',', '.')) * 100,
-                            Revoca: parseFloat(String(d['Revocar (%)'] || 0).replace(',', '.')) * 100
+                            Estado: d[estKey] ? cleanText(d[estKey]) : "Desconocido",
+                            Mes: formatMes(parseMes(d[mesKey])),
+                            Siga: parseFloat(String(d[sigaKey] || 0).replace(',', '.')) * 100,
+                            Revoca: parseFloat(String(d[revKey] || 0).replace(',', '.')) * 100
                         }));
                         setStatus("Datos de revocación cargados. Inicializando...");
                     } else {
@@ -627,7 +697,7 @@
 
             if (rubroData.length > 0) {
                 const rubrosBase = [...new Set(rubroData.map(d => d.Rubros))].sort();
-                const acuerdosBase = [...new Set(rubroData.map(d => d.Acuerdo_PED || d['Acuerdo PED']))].filter(x => x).sort();
+                const acuerdosBase = [...new Set(rubroData.map(d => d.Acuerdo_PED))].filter(x => x && x !== "Otros").sort();
                 populate('selR', rubrosBase, false);
                 populate('selA', acuerdosBase, true);
             }
@@ -674,7 +744,7 @@
                 let dsR = rubroData.filter(d => d.Estado === "Hidalgo");
                 if (verifiedF !== 'Todas') dsR = dsR.filter(d => d.Mes === verifiedF);
                 if (c !== 'Todas') dsR = dsR.filter(d => d.Encuesta === c);
-                if (a !== 'Todas') dsR = dsR.filter(d => (d.Acuerdo_PED || d['Acuerdo PED']) === a);
+                if (a !== 'Todas') dsR = dsR.filter(d => d.Acuerdo_PED === a);
                 const rValidos = [...new Set(dsR.map(d => d.Rubros))].sort();
                 populate('selR', rValidos, false, r);
 
@@ -682,7 +752,7 @@
                 let dsA = rubroData.filter(d => d.Estado === "Hidalgo");
                 if (verifiedF !== 'Todas') dsA = dsA.filter(d => d.Mes === verifiedF);
                 if (c !== 'Todas') dsA = dsA.filter(d => d.Encuesta === c);
-                const aValidos = [...new Set(dsA.map(d => d.Acuerdo_PED || d['Acuerdo PED']))].filter(x => x).sort();
+                const aValidos = [...new Set(dsA.map(d => d.Acuerdo_PED))].filter(x => x && x !== "Otros").sort();
                 populate('selA', aValidos, true, a);
             }
         }
@@ -915,7 +985,7 @@
             let dR = rubroData.filter(d => d.Estado === "Hidalgo");
             if (f !== "Todas") dR = dR.filter(d => d.Mes === f);
             if (c !== "Todas") dR = dR.filter(d => d.Encuesta === c);
-            if (a !== "Todas") dR = dR.filter(d => (d.Acuerdo_PED || d['Acuerdo PED']) === a);
+            if (a !== "Todas") dR = dR.filter(d => d.Acuerdo_PED === a);
 
             // 1. Radar Chart: Todos los rubros para Hidalgo
             const rubrosMap = new Map();
@@ -934,8 +1004,8 @@
             // 2. Radar Chart: Acuerdos PED
             const acuerdosMap = new Map();
             dR.forEach(d => {
-                const ac = d.Acuerdo_PED || d['Acuerdo PED'];
-                if (ac) {
+                const ac = d.Acuerdo_PED;
+                if (ac && ac !== "Otros") {
                     if (!acuerdosMap.has(ac)) acuerdosMap.set(ac, { sum: 0, count: 0 });
                     acuerdosMap.get(ac).sum += d.Val;
                     acuerdosMap.get(ac).count++;
@@ -984,9 +1054,9 @@
                 val: parseFloat((rankMap.get(k).sum / rankMap.get(k).count).toFixed(1))
             })).sort((a, b) => b.val - a.val);
 
-            document.getElementById('txtRubro').innerText = r;
+            document.getElementById('txtRubro').innerText = cleanText(r);
             render('chRubroRank', 'bar', {
-                labels: dataRank.map((d, i) => `${i + 1}. ${d.label}`),
+                labels: dataRank.map((d, i) => `${i + 1}. ${cleanText(d.label)}`),
                 datasets: [{ data: dataRank.map(d => d.val), color: '#e67e22' }]
             }, 'y', null, "Hidalgo");
         }
